@@ -1,11 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<title>
-    Hello
-</title>
-
-<body>
-    My name is Grancea Alexandru and I am a student at the Babes-Bolyai University in Cluj-Napoca, Romania.
-</body>
-
-</html>
+{% extends "cvsite/layout.html" %}
+{% block content %}
+    <div class="intro-text">
+        I am a second-year <strong>Computer Science</strong> student at <strong>Babeș-Bolyai University</strong> with a passion for <strong>competitive programming</strong>, sports, reading, and personal development. Throughout high school, I excelled in <strong>algorithmic competitions</strong>, math contests, and sports events, earning multiple awards. I also enjoy mentoring students in the fundamentals of competitive programming, sharing my knowledge and experience. I’m eager to bring my problem-solving skills, dedication, and enthusiasm for technology to new challenges and opportunities in the tech industry.
+    </div>
+    
+    
+    <div class="button-container">
+        <a href="{% url 'about' %}" class="btn btn-primary">About Me</a>
+        <a href="{% url 'portfolio' %}" class="btn btn-primary">View My Portfolio</a>
+        <a href="{% url 'contact' %}" class="btn btn-primary">Contact Me</a>
+    </div>
+    
+{% endblock %}

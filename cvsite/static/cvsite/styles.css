@@ -1,0 +1,122 @@
+/* General body styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: #f5f5f5;
+}
+
+/* Gradient animation */
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Header styles */
+header {
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent for contrast */
+    padding: 20px;
+    text-align: center;
+    font-size: 2em;
+    color: #f5f5f5;
+}
+
+/* Main content styles */
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+/* Footer styles */
+footer {
+    background-color: #222;
+    color: #f5f5f5;
+    text-align: center;
+    padding: 40px 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    clip-path: polygon(0 75%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+a {
+    color: #ffcc00;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+/* Styles for the introduction text */
+.intro-text {
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #f5f5f5;
+    background-color: rgba(0, 0, 0, 0.5); /* Slightly transparent background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    text-align: justify;
+    font-style: italic; /* Optional: makes it more elegant */
+}
+
+/* Highlight keywords */
+.intro-text strong {
+    color: #ffcc00;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    align-items: center; /* Centers buttons vertically (in case of different heights) */
+    gap: 15px; /* Adds space between buttons */
+    margin-top: 20px;
+}
+/* Base button styles */
+.btn {
+    padding: 12px 25px;
+    font-size: 1em;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Primary Button (filled) */
+.btn-primary {
+    background-color: #ffcc00;
+    color: #333;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #f5a623;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Adds hover effect */
+}
+
+/* Secondary Button (outline) */
+.btn-outline-secondary {
+    background-color: transparent;
+    color: #ffcc00;
+    border: 2px solid #ffcc00;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #ffcc00;
+    color: #333;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    transform: translateY(-2px); /* Adds hover effect */
+}
