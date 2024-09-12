@@ -55,6 +55,33 @@ a:hover {
     text-decoration: underline;
 }
 
+/* Header styles for name */
+header h1 {
+    font-size: 2.5em; /* Clean, professional size */
+    color: #f5f5f5; /* White color */
+    text-align: center;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    opacity: 0; /* Initially invisible for animation */
+    transform: translateY(-20px); /* Slide from above */
+    animation: fadeInMoveDown 1.5s ease-out forwards; /* Animation */
+}
+
+
+/* Keyframe for fade-in and move-down animation */
+@keyframes fadeInMoveDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px); /* Start 20px above */
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0); /* Settle in the final position */
+    }
+}
 
 /* Styles for the introduction text */
 .intro-text {
@@ -69,6 +96,7 @@ a:hover {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     text-align: justify;
     font-style: italic; /* Optional: makes it more elegant */
+    animation: fadeInMoveDown 1.5s ease-out forwards; /* Animation */
 }
 
 /* Highlight keywords */
