@@ -1,1 +1,49 @@
 {% extends "cvsite/layout.html" %}
+
+{% block content %}
+    <div class="intro-text">
+        <h1>Hi, I am <span class="highlight">Grancea Alexandru</span>, and this is my programming journey!</h1>
+        <p>
+            I’m currently in my second year at <strong>Babeș-Bolyai University</strong> in Cluj-Napoca, where I’m pursuing my passion for computer science. From a young age, I was always curious about how the technology around us worked, and it didn’t take long for me to realize that programming was the key to understanding and shaping that world.
+        </p>
+        <p>
+            My interest in programming truly took off in high school, where I started learning algorithms in C++. By the 10th grade, I had mastered the school curriculum and sought out new challenges. This led me to join the <strong>Center for Performance in Informatics</strong>, where I dived deep into advanced algorithms and data structures. In my final year, I was given the rewarding opportunity to teach younger students advanced algorithmic techniques.
+        </p>
+        <p>
+            To broaden my skillset, I also completed Harvard's <strong>CS50</strong> course, which introduced me to new technologies and reinforced my passion for the field. The course expanded my horizons and gave me the confidence to take on more complex projects.
+        </p>
+        <p>
+            You can explore my personal projects in the <strong> <a href="{% url 'portfolio' %}">projects tab </a></strong>!
+        </p>
+    </div> 
+    <!-- Achievements section -->
+    <div id="achievements" class="hidden">
+        <h3>Achievements</h3>
+        <ul>
+            <li>Bronze medal at the National Computer Science Olympiad</li>
+            <li>Third place in a national algorithm contest</li>
+            <li>Multiple prizes at various algorithmic contests</li>
+            <li>National Olympiad in handball</li>
+            <li>Winner of numerous sports competitions</li>
+        </ul>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+        const achievementsSection = document.getElementById('achievements');
+
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight)
+            );
+        }
+
+            window.addEventListener('scroll', function() {
+                if (isInViewport(achievementsSection)) {
+                    achievementsSection.classList.add('visible'); // Add visible class when in view
+                }
+            });
+        });
+    </script>
+{% endblock %}

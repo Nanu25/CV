@@ -71,15 +71,15 @@ header h1 {
 }
 
 
-/* Keyframe for fade-in and move-down animation */
+
 @keyframes fadeInMoveDown {
     0% {
         opacity: 0;
-        transform: translateY(-20px); /* Start 20px above */
+        transform: translateY(-35px);
     }
     100% {
         opacity: 1;
-        transform: translateY(0); /* Settle in the final position */
+        transform: translateY(0);
     }
 }
 
@@ -147,4 +147,147 @@ header h1 {
     color: #333;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     transform: translateY(-2px); /* Adds hover effect */
+}
+
+/* Initially hidden state */
+.hidden {
+    opacity: 0;
+    transform: translateY(70px); /* Shift it further down for a more noticeable animation */
+    transition: opacity 1.7s ease-out, transform 1.7s ease-out; /* Increased duration for a slower effect */
+}
+
+/* Visible state for animation */
+.visible {
+    opacity: 1;
+    transform: translateY(0); /* Return to normal position */
+}
+
+
+/* General styles for the achievements container */
+#achievements {
+    background-color: #1e1e1e; /* Dark background to make text stand out */
+    padding: 40px; /* Add padding for some breathing room */
+    border-radius: 10px; /* Slight rounding of corners */
+    color: #f5f5f5; /* Soft white text color */
+    max-width: 800px; /* Limit width to keep content readable */
+    margin: 50px auto; /* Center the section horizontally */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a soft shadow */
+}
+
+/* Styling the Achievements heading */
+#achievements h3 {
+    font-size: 2em; /* Make heading larger */
+    text-align: center; /* Center-align the heading */
+    color: #ffcc00; /* Use a highlight color for emphasis */
+    margin-bottom: 20px; /* Add space below the heading */
+    letter-spacing: 1px; /* Slight spacing between letters */
+    text-transform: uppercase; /* Make the heading uppercase */
+}
+
+/* Styling the list of achievements */
+#achievements ul {
+    list-style: none; /* Remove default list bullets */
+    padding: 0;
+}
+
+#achievements ul li {
+    font-size: 1.2em; /* Slightly increase font size */
+    margin-bottom: 10px; /* Add space between list items */
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.6; /* Increase line height for better readability */
+    font-weight: 300;
+}
+
+/* Add a custom bullet before each list item */
+#achievements ul li::before {
+    content: '•'; /* Custom bullet */
+    position: absolute;
+    left: 0;
+    color: #ffcc00; /* Same color as heading for consistency */
+    font-size: 1.5em; /* Bigger bullet size */
+    line-height: 1.6;
+}
+
+/* Subtle hover effect on list items */
+#achievements ul li:hover {
+    color: #ffcc00; /* Highlight text on hover */
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+
+/* Container for the grid with two items per row */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
+    gap: 20px; /* Space between the cards */
+    margin: 20px 0;
+}
+
+/* Each project card */
+.project-card {
+    background-color: #2c2c2c; /* Dark background for the cards */
+    color: #f5f5f5; /* Light text */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5); /* Subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation for hover */
+}
+
+/* On hover, project cards have a subtle "lift" effect */
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
+}
+
+/* Handwritten text style for card content */
+.project-card p {
+    font-family: 'Dancing Script', cursive; /* Example of a handwritten font */
+    font-size: 1.2em;
+    line-height: 1.6;
+    margin: 0;
+    letter-spacing: 0.5px;
+    font-style: italic; /* Add an italic touch to make it more handwritten */
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr; /* Single column on smaller screens */
+    }
+}
+
+/* Project links */
+.project-links {
+    margin-top: 15px;
+}
+
+.project-links .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9em;
+    margin-right: 10px;
+    transition: background-color 0.3s ease;
+}
+
+/* GitHub button */
+.btn-github {
+    background-color: #333;
+    color: white;
+}
+
+.btn-github:hover {
+    background-color: #555;
+}
+
+/* Website button */
+.btn-website {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-website:hover {
+    background-color: #0056b3;
 }
