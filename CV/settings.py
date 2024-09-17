@@ -150,6 +150,13 @@ if 'DATABASE_URL' in os.environ:
         os.path.join(BASE_DIR, 'static'),
     )
 
+MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
+    # other middleware...
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
