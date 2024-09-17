@@ -121,19 +121,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static",
+    BASE_DIR / "cvsite" / "static",  # This points to the static folder inside the cvsite directory
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-
-# Ensure you have this setting to find static files in your app directories
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, 'static'),
-# ]
 
 # Additional settings for Heroku
 if 'DATABASE_URL' in os.environ:
@@ -148,14 +141,15 @@ if 'DATABASE_URL' in os.environ:
     # Extra places for collectstatic to find static files.
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
+
     )
 
-MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
-    # other middleware...
-]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# MIDDLEWARE = [
+#     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
+# ]
+#
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
