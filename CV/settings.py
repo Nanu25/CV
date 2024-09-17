@@ -145,11 +145,11 @@ if 'DATABASE_URL' in os.environ:
     )
 
 
-# MIDDLEWARE = [
-#     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
-# ]
-#
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
+]
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 
 # Default primary key field type
