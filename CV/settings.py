@@ -144,7 +144,7 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 #
 #     )
 #
-
+#Ca sa pot sa i dau deploy pe heroku trebuie sa adaug urmatoarele 2 linii de cod, ca sa pot compila, trebuie sa le comentez.
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
 ]
