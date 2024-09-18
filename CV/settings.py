@@ -127,30 +127,30 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
-# Additional settings for Heroku
-if 'DATABASE_URL' in os.environ:
-    # Allow all host headers
-    ALLOWED_HOSTS = ['*']
-
-    # Static asset configuration
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATIC_URL = '/static/'
-
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-
-    )
-
-
-MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
-]
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+#
+# # Additional settings for Heroku
+# if 'DATABASE_URL' in os.environ:
+#     # Allow all host headers
+#     ALLOWED_HOSTS = ['*']
+#
+#     # Static asset configuration
+#     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+#     STATIC_URL = '/static/'
+#
+#     # Extra places for collectstatic to find static files.
+#     STATICFILES_DIRS = (
+#         os.path.join(BASE_DIR, 'static'),
+#
+#     )
+#
+#
+# MIDDLEWARE = [
+#     'whitenoise.middleware.WhiteNoiseMiddleware',  # Add this above other middleware
+# ]
+#
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

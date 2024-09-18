@@ -39,11 +39,17 @@ footer {
     background-color: #222;
     color: #f5f5f5;
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 0;
     position: relative;
     bottom: 0;
     width: 100%;
     clip-path: polygon(0 75%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+footer h4 {
+    margin-bottom: 1px;  /* Increase space between header and buttons */
+    font-size: 2.2rem;
+    color: #fff;
 }
 
 a {
@@ -290,4 +296,27 @@ header h1 {
 
 .btn-website:hover {
     background-color: #0056b3;
+}
+
+
+.social-links {
+    margin-top: 20px;
+}
+
+
+.social-links .btn {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    color: #fff;
+    border-color: #fff;
+}
+
+.social-links .btn i {
+    margin-right: 8px;
+}
+
+.social-links .btn:hover {
+    background-color: #fff;
+    color: #2c2c2c;
 }
