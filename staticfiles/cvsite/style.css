@@ -46,6 +46,12 @@ footer {
     clip-path: polygon(0 75%, 100% 0%, 100% 100%, 0% 100%);
 }
 
+.footer .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
 footer h4 {
     margin-bottom: 1px;  /* Increase space between header and buttons */
     font-size: 2.2rem;
@@ -70,7 +76,7 @@ header h1 {
     text-align: center;
     letter-spacing: 3px;
     text-transform: uppercase;
-    font-weight: 700; /* Slightly bolder for impact */
+    font-weight: 600; /* Slightly bolder for impact */
     margin-top: 20px;
     margin-bottom: 10px;
     opacity: 0; /* Initially invisible for animation */
@@ -322,4 +328,88 @@ header h1 {
 .social-links .btn:hover {
     background-color: #fff;
     color: #2c2c2c;
+}
+
+
+/* Responsive layout for smaller screens */
+@media (max-width: 768px) {
+    /* Make the header text smaller for mobile */
+    header h1 {
+        font-size: 2em; /* Adjust title size for smaller screens */
+    }
+
+    .card {
+        width: 100%; /* One card per row on smaller screens */
+        margin-bottom: 20px;
+    }
+
+
+    /* Adjust padding and margin for mobile */
+    body, .container {
+        padding: 0 10px;
+    }
+
+    /* Footer follows the content on mobile */
+    .footer {
+        position: relative;
+        bottom: 0;
+        padding-bottom: 20px;
+    }
+
+    .footer {
+        font-size: 0.9em;
+        padding-bottom: 20px;
+    }
+
+    .footer a {
+        display: block;
+        margin: 10px 0;
+    }
+
+    .footer .social-links {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* For very small screens, like smartphones */
+@media (max-width: 480px) {
+    /* Make font sizes smaller */
+    body {
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 1.8em; /* Smaller title */
+    }
+
+    /* Full-width buttons on small screens */
+    .button-container .btn {
+        font-size: 0.9em;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .card {
+        flex: 0 1 100%; /* One card per row on smaller screens */
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2em; /* Smaller title for tablets */
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.3em; /* Smaller title for smartphones */
+        margin-top: 5px;
+    }
+
+    .footer {
+        font-size: 0.8em;
+    }
 }
