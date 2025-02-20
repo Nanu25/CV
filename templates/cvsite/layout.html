@@ -13,9 +13,16 @@
 </head>
 <body>
     
-    <header>
-        <h1>Grancea Alexandru</h1>
-    </header>
+ <header>
+    <div class="name-container">
+        <h1>
+            <span class="first-name">Grancea</span>
+            <span class="last-name">Alexandru</span>
+        </h1>
+        <!-- Use Django's static tag to load the image -->
+        <img src="{% static 'images/peu.jpeg' %}" alt="Grancea Alexandru" class="profile-photo">
+    </div>
+</header>
 
     
     <main>
