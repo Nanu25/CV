@@ -1,8 +1,16 @@
 {% extends "cvsite/layout.html" %}
 
 {% block content %}
-    <h2>{{ entry.title }}</h2>
-    <p><strong>Published on:</strong> {{ entry.date }}</p>
-    <p>{{ entry.content }}</p>
-    <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
+    <div class="entry-container">
+        <h2 class="entry-title">{{ entry.title }}</h2>
+        <p class="entry-date"><i class="fas fa-calendar-alt"></i> <strong>Published on:</strong> {{ entry.date }}</p>
+        <div class="entry-content">
+            <p>{{ entry.content|linebreaks }}</p>
+        </div>
+    </div>
+
+    <div class="back-home">
+        <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
+    </div>
+
 {% endblock %}
