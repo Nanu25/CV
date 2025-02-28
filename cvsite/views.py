@@ -53,7 +53,8 @@ JOURNAL_ENTRIES = {
     },
     3: {
         "title": "Balancing Sports and Academics",
-        "content": "Being passionate about both sports and CS, I learned how to manage time effectively...",
+        "content": "Since I was in primary school, I’ve been passionate about sports. I started playing handball in the first grade, encouraged by my parents. They don’t play sports themselves, but they wanted me to stay active and pursue something I could enjoy. That’s how my journey with handball began, and it quickly became a big part of my life.\n\n"
+                   "In school, I’ve worked hard to balance academics with sports. I was a strong student and, at the same time, a dedicated handball player. I took pride in excelling at both, even when it wasn’t easy. When I reached high school, I discovered a new interest: computer science. I started learning to code and tackling algorithmic problems, which opened up a whole new world for me. But I never let go of sports. Handball remained a constant, and I found a rhythm that allowed me to grow in both areas. My studies and my athletic pursuits have shaped me in different ways, teaching me discipline, focus, and how to manage my time. Looking back, I’m proud of how I’ve kept these two passions alive, and I hope to continue balancing them as I move forward.",
         "date": "February 10, 2025"
     },
     4: {
