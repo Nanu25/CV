@@ -1,23 +1,214 @@
-/* General body styles */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: Arial, sans-serif;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    color: #f5f5f5;
+/* Reset and base styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  font-family: Arial, sans-serif;
 }
 
-/* Gradient animation */
-@keyframes gradient {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+/*
+ * Fixed background container
+ * Using a fixed position background that stays in place while content scrolls
+ */
+body {
+  position: relative;
+  color: #ffffff;
+  /* Remove overflow: hidden to allow scrolling */
 }
+
+/* Create fixed background that doesn't scroll with content */
+body::before {
+  content: "";
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    125deg,
+    lightskyblue, /* Vibrant orange - #ff7b00 */
+    darkblue, /* Deep purple - #9c27b0 */
+    #00bcd4,
+    steelblue
+  );
+  background-size: 400% 400%;
+  animation: gradientFlow 15s ease infinite;
+  z-index: -2;
+}
+
+/* Animated gradient keyframes */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/*
+ * Subtle pattern overlay
+ * Also fixed position to stay in place during scrolling
+ */
+body::after {
+  content: "";
+  position: fixed; /* Changed from absolute to fixed */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255, 255, 255, 0.03),
+      rgba(255, 255, 255, 0.03) 1px,
+      transparent 1px,
+      transparent 10px
+    );
+  z-index: -1;
+  opacity: 0.4;
+  animation: patternPulse 10s ease-in-out infinite;
+}
+
+/* Subtle pattern pulsing animation */
+@keyframes patternPulse {
+  0% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0.3;
+  }
+}
+
+/* Header styles */
+header {
+  padding: 20px;
+  position: relative; /* Ensure it's above the background */
+  z-index: 1;
+}
+
+.name-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.first-name, .last-name {
+  display: inline-block;
+}
+
+.profile-photo {
+  border-radius: 50%;
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+/* Main content area */
+main {
+  position: relative;
+  z-index: 1;
+  min-height: 60vh; /* Ensure there's space for content */
+  padding: 20px;
+}
+
+/* Footer styles */
+footer {
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  margin-top: auto;
+}
+
+.follow-me {
+  text-align: center;
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+/*
+ * Blur layer - also fixed position
+ * Modify the HTML to include this div right after <body> tag
+ */
+.blur-layer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(0px);
+  z-index: -1;
+  animation: blurChange 20s ease-in-out infinite;
+  pointer-events: none; /* Ensures clicks pass through */
+}
+
+@keyframes blurChange {
+  0% {
+    backdrop-filter: blur(0px);
+  }
+  25% {
+    backdrop-filter: blur(1px);
+  }
+  50% {
+    backdrop-filter: blur(2px);
+  }
+  75% {
+    backdrop-filter: blur(1px);
+  }
+  100% {
+    backdrop-filter: blur(0px);
+  }
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 768px) {
+  body::before {
+    background-size: 300% 300%; /* Smaller background size for better performance on mobile */
+  }
+
+  .name-container {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile-photo {
+    margin-top: 15px;
+  }
+}
+
+/*!* General body styles *!*/
+/*body {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-family: Arial, sans-serif;*/
+/*    min-height: 100vh;*/
+/*    display: flex;*/
+/*    flex-direction: column;*/
+/*    background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);*/
+/*    background-size: 400% 400%;*/
+/*    animation: gradient 20s ease infinite;*/
+/*    color: #f5f5f5;*/
+/*}*/
+
+/*!* Gradient animation *!*/
+/*@keyframes gradient {*/
+/*    0% { background-position: 0% 50%; }*/
+/*    50% { background-position: 100% 50%; }*/
+/*    100% { background-position: 0% 50%; }*/
+/*}*/
 
 /* Header styles */
 header {
@@ -148,7 +339,7 @@ header h1 {
     gap: 15px; /* Adds space between buttons */
     margin-top: 20px;
 }
-/* Base button styles */
+ /*Base button styles */
 .btn {
     padding: 12px 25px;
     font-size: 1em;
@@ -516,9 +707,17 @@ header h1 {
 
 /* Responsive layout for smaller screens */
 @media (max-width: 768px) {
-    /* Make the header text smaller for mobile */
+    /* Make the header text smaller for mobile and prevent overflow */
+    header {
+        width: 100%;
+        overflow: hidden; /* Prevent any content from overflowing */
+        padding: 15px 10px; /* Adjusted padding */
+    }
+
     header h1 {
         font-size: 2em; /* Adjust title size for smaller screens */
+        word-wrap: break-word; /* Allow long names to wrap */
+        max-width: 100%; /* Ensure text doesn't overflow container */
     }
 
     .card {
@@ -526,102 +725,95 @@ header h1 {
         margin-bottom: 20px;
     }
 
-
     /* Adjust padding and margin for mobile */
     body, .container {
-        padding: 0 10px;
+        padding: 0;
     }
 
-    /* Footer follows the content on mobile */
-    .footer {
+    /* Improved footer styling for mobile */
+    footer {
         position: relative;
         bottom: 0;
-        padding-bottom: 20px;
+        padding: 20px 15px;
+        text-align: center;
+        width: 100%; /* Ensure footer spans full width */
+        box-sizing: border-box; /* Include padding in width calculation */
+        margin: 0; /* Remove any margin */
     }
 
-    .footer {
-        font-size: 0.9em;
-        padding-bottom: 20px;
+    footer p {
+        margin-bottom: 15px;
     }
 
-    .footer a {
-        display: block;
-        margin: 10px 0;
+    /* Improved social links for mobile */
+    .social-links {
+        display: flex;
+        flex-direction: row; /* Keep links in a row */
+        flex-wrap: wrap; /* Allow wrapping on very narrow screens */
+        justify-content: center;
+        gap: 12px; /* Slightly reduced gap */
+        width: 100%; /* Full width */
     }
 
-    .footer .social-links {
-        flex-direction: column;
-        gap: 10px;
+    .social-links a {
+        margin: 5px;
+        padding: 8px 15px; /* More touch-friendly padding */
+    }
+
+    /* Name container adjustments */
+    .name-container {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+        align-items: center;
+        text-align: center;
+        gap: 15px; /* Comfortable gap */
+        width: 100%; /* Full width */
+        max-width: 100%; /* Ensure container doesn't overflow */
+    }
+
+    /* Increased profile photo size for mobile */
+    .profile-photo {
+        width: 120px; /* Larger photo on mobile */
+        height: 120px;
+        margin: 0 auto; /* Center the photo */
     }
 }
 
 /* For very small screens, like smartphones */
 @media (max-width: 480px) {
-    /* Make font sizes smaller */
+    /* Make font sizes smaller to prevent overflow */
     body {
         font-size: 14px;
     }
 
     header h1 {
-        font-size: 1.8em; /* Smaller title */
+        font-size: 1.6em; /* Further reduced title size */
+        letter-spacing: normal; /* Remove any letter spacing that could cause overflow */
     }
 
-    /* Full-width buttons on small screens */
-    .button-container .btn {
+    /* Ensure first-name and last-name don't overflow */
+    .first-name, .last-name {
+        display: block; /* Stack name parts vertically if needed */
+        max-width: 100%;
+    }
+
+    /* Footer styling for very small screens */
+    footer {
+        padding: 15px 10px;
+    }
+
+    /* Keep social links horizontal but with proper spacing */
+    .social-links {
+        gap: 10px;
+    }
+
+    .social-links a {
         font-size: 0.9em;
-    }
-}
-
-
-@media (max-width: 768px) {
-    .card {
-        flex: 0 1 100%; /* One card per row on smaller screens */
-    }
-}
-
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2em; /* Smaller title for tablets */
-        margin-top: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.3em; /* Smaller title for smartphones */
-        margin-top: 5px;
+        padding: 7px 12px;
     }
 
-    .footer {
-        font-size: 0.8em;
-    }
-}
-
-/* ✅ Mobile Responsive */
-@media (max-width: 768px) {
-    .name-container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        gap: 10px; /* Reduce gap */
-    }
-
-    header h1 {
-        font-size: 2em; /* Slightly smaller font for tablets */
-    }
-
+    /* Further profile photo adjustments */
     .profile-photo {
-        width: 80px; /* Reduce image size for better fit */
-        height: 80px;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5em; /* Even smaller for smartphones */
-        letter-spacing: 2px;
-    }
-
-    .profile-photo {
-        width: 70px; /* Reduce image size further */
-        height: 70px;
+        width: 110px;
+        height: 110px;
     }
 }
