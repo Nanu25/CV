@@ -614,15 +614,15 @@ header h1 {
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.7);
 }
 
-/* Handwritten text style for card content */
 .project-card p {
-    font-family: 'Dancing Script', cursive; /* Example of a handwritten font */
+    font-family: 'Georgia', 'Times New Roman', serif; /* Widely available serif fonts */
     font-size: 1.2em;
     line-height: 1.6;
     margin: 0;
     letter-spacing: 0.5px;
-    font-style: italic; /* Add an italic touch to make it more handwritten */
+    font-style: italic; /* Maintain the italic style */
 }
+
 
 /* Mobile responsiveness */
 @media (max-width: 768px) {
@@ -705,78 +705,104 @@ header h1 {
 }
 
 
-/* Responsive layout for smaller screens */
 @media (max-width: 768px) {
-    /* Make the header text smaller for mobile and prevent overflow */
+    body::before {
+        background: linear-gradient(
+            lightskyblue,
+            darkblue,
+            #00bcd4,
+            steelblue
+        );
+        background-size: 100% 400%;
+        animation: verticalGradientFlow 15s ease infinite;
+    }
+
+    @keyframes verticalGradientFlow {
+        0% {
+            background-position: 0% 0%;
+        }
+        50% {
+            background-position: 0% 100%;
+        }
+        100% {
+            background-position: 0% 0%;
+        }
+    }
+
+    /* Header adjustments */
     header {
         width: 100%;
-        overflow: hidden; /* Prevent any content from overflowing */
-        padding: 15px 10px; /* Adjusted padding */
+        overflow: hidden;
+        padding: 15px 10px;
     }
 
     header h1 {
-        font-size: 2em; /* Adjust title size for smaller screens */
-        word-wrap: break-word; /* Allow long names to wrap */
-        max-width: 100%; /* Ensure text doesn't overflow container */
+        font-size: 2em;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
+    /* Card adjustments for mobile */
     .card {
-        width: 100%; /* One card per row on smaller screens */
+        width: 100%;
         margin-bottom: 20px;
     }
 
     /* Adjust padding and margin for mobile */
     body, .container {
-        padding: 0;
+        padding: 0 10px; /* Keep slight padding to prevent content touching edges */
     }
 
-    /* Improved footer styling for mobile */
+    /* Footer adjustments */
     footer {
         position: relative;
         bottom: 0;
         padding: 20px 15px;
         text-align: center;
-        width: 100%; /* Ensure footer spans full width */
-        box-sizing: border-box; /* Include padding in width calculation */
-        margin: 0; /* Remove any margin */
+        width: 100%;
+        box-sizing: border-box;
+        margin: 0;
+         clip-path: none;
+
     }
 
     footer p {
-        margin-bottom: 15px;
+        display: none; /* Completely hide the paragraph with the dot */
     }
 
-    /* Improved social links for mobile */
+    /* Social links */
     .social-links {
         display: flex;
-        flex-direction: row; /* Keep links in a row */
-        flex-wrap: wrap; /* Allow wrapping on very narrow screens */
+        flex-direction: row;
+        flex-wrap: wrap;
         justify-content: center;
-        gap: 12px; /* Slightly reduced gap */
-        width: 100%; /* Full width */
+        gap: 12px;
+        width: 100%;
     }
 
     .social-links a {
         margin: 5px;
-        padding: 8px 15px; /* More touch-friendly padding */
+        padding: 8px 15px;
     }
 
     /* Name container adjustments */
     .name-container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
+        flex-direction: column;
         align-items: center;
         text-align: center;
-        gap: 15px; /* Comfortable gap */
-        width: 100%; /* Full width */
-        max-width: 100%; /* Ensure container doesn't overflow */
+        gap: 15px;
+        width: 100%;
+        max-width: 100%;
     }
 
-    /* Increased profile photo size for mobile */
+    /* Profile photo adjustments */
     .profile-photo {
-        width: 120px; /* Larger photo on mobile */
+        width: 120px;
         height: 120px;
-        margin: 0 auto; /* Center the photo */
+        margin: 0 auto;
     }
 }
+
 
 /* For very small screens, like smartphones */
 @media (max-width: 480px) {
@@ -799,6 +825,11 @@ header h1 {
     /* Footer styling for very small screens */
     footer {
         padding: 15px 10px;
+        clip-path: none;
+    }
+
+    footer p {
+        display: none; /* Completely hide the paragraph with the dot */
     }
 
     /* Keep social links horizontal but with proper spacing */
