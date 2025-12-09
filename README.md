@@ -13,7 +13,7 @@ Welcome to my CV Site repository! This project is a personal website designed to
 ## Technologies Used
 - **Django:** Python-based web framework for rapid development.
 - **HTML & CSS:** Markup and styling for a modern, responsive design.
-- **JavaScript:** Enhancements for interactivity (if applicable).
+- **JavaScript:** Enhancements for interactivity.
 
 
 
