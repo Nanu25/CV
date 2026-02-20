@@ -8,8 +8,86 @@ def index(request):
 def about(request):
     return render(request, "cvsite/about.html")
 
+# Hardcoded portfolio projects, grouped by year (newest first)
+PROJECTS_BY_YEAR = {
+    2025: [
+        {
+            "title": "Habit Tracker",
+            "description": (
+                "A habit tracking application that helps users build and maintain healthy routines. "
+                "Features include habit creation, progress tracking with visual statistics, streak counting, "
+                "and a clean, intuitive dashboard. Built as my CS50 final project."
+            ),
+            "tech_stack": ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
+            "category": "web",
+            "github_url": "https://github.com/Nanu25/Habits",
+            "live_url": "https://my-habit-tracker-0591dbd6deef.herokuapp.com/",
+            "featured": False,
+        },
+        {
+            "title": "Gym Journal",
+            "description": (
+                "A full-stack fitness tracking platform built from scratch. Users can log workouts, "
+                "track personal records, visualize progress over time, and get AI-powered training suggestions. "
+                "Features a comprehensive exercise library with 500+ exercises and detailed metrics dashboard."
+            ),
+            "tech_stack": ["React", "Node.js", "PostgreSQL", "Express", "OpenAI API"],
+            "category": "fullstack",
+            "github_url": "https://github.com/Nanu25/GymJournal/tree/Heroku",
+            "live_url": "https://gymjournal-75451ef51cbf.herokuapp.com/",
+            "featured": True,
+        },
+    ],
+    2024: [
+        {
+            "title": "Toy Language Interpreter",
+            "description": (
+                "A complete programming language interpreter with lexer, parser, and execution engine. "
+                "Supports variables, conditionals, loops, functions, and concurrent execution with "
+                "thread synchronization. Includes a type system and garbage collection."
+            ),
+            "tech_stack": ["Java", "OOP", "Design Patterns", "Multithreading"],
+            "category": "systems",
+            "github_url": "https://github.com/Nanu25/ToyLanguage",
+            "live_url": None,
+            "featured": False,
+        },
+        {
+            "title": "Connect Four AI",
+            "description": (
+                "An intelligent Connect Four game with an unbeatable AI opponent. Implements Minimax "
+                "algorithm with Alpha-Beta pruning for optimal move selection. Features adjustable "
+                "difficulty levels and a polished graphical interface."
+            ),
+            "tech_stack": ["Python", "Pygame", "Minimax", "Alpha-Beta Pruning"],
+            "category": "ai",
+            "github_url": "https://github.com/Nanu25/Connect-Four",
+            "live_url": None,
+            "featured": False,
+        },
+    ],
+}
+
+# Portfolio stats for hero section
+PORTFOLIO_STATS = {
+    "total_projects": sum(len(projects) for projects in PROJECTS_BY_YEAR.values()),
+    "years_coding": 4,
+    "technologies": 12,
+}
+
+
 def portfolio(request):
-    return render(request, "cvsite/portfolio.html")
+    # Years descending (newest first) for template
+    years = sorted(PROJECTS_BY_YEAR.keys(), reverse=True)
+    portfolio_years = [(y, PROJECTS_BY_YEAR[y]) for y in years]
+    return render(
+        request,
+        "cvsite/portfolio.html",
+        {
+            "portfolio_years": portfolio_years,
+            "stats": PORTFOLIO_STATS,
+        },
+    )
 
 def contact(request):
     return render(request, "cvsite/contact.html")
@@ -49,7 +127,7 @@ JOURNAL_ENTRIES = {
         "title": "Balancing Sports and Academics",
         "content": (
             "Since I was in primary school, I’ve been passionate about sports. I started playing handball in the first grade, encouraged by my parents. They don’t play sports themselves, but they wanted me to stay active and pursue something I could enjoy. That’s how my journey with handball began, and it quickly became a big part of my life.\n\n"
-            "In school, I’ve worked hard to balance academics with sports. I was a strong student and, at the same time, a dedicated handball player. I took pride in excelling at both, even when it wasn’t easy. When I reached high school, I discovered a new interest: computer science. I started learning to code and tackling algorithmic problems, which opened up a whole new world for me. But I never let go of sports. Handball remained a constant, and I found a rhythm that allowed me to grow in both areas. My studies and my athletic pursuits have shaped me in different ways, teaching me discipline, focus, and how to manage my time. Looking back, I’m proud of how I’ve kept these two passions alive, and I hope to continue balancing them as I move forward."
+            "In school, I’ve worked hard to balance academics with sports. I was a good student and, at the same time, a dedicated handball player. I took pride in excelling at both, even when it wasn’t easy. When I reached high school, I discovered a new interest: computer science. I started learning to code and 'tackling' algorithmic problems, which opened up a whole new world for me. But I never let go of sports. Handball remained a constant, and I found a rhythm that allowed me to grow in both areas. My studies and my athletic pursuits have shaped me in different ways, teaching me discipline, focus, and how to manage my time. Looking back, I’m proud of how I’ve kept these two passions alive, and I hope to continue balancing them as I move forward."
         ),
         "date": "February 10, 2025"
     },

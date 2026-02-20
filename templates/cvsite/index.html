@@ -1,31 +1,47 @@
 {% extends "cvsite/layout.html" %}
 {% block content %}
+<div class="content-glass-card">
     <div class="intro-text">
-        I am a second-year <strong>Computer Science</strong> student at <strong>Babeș-Bolyai University</strong> with a passion for <strong>competitive programming</strong>, sports, reading, and personal development. Throughout high school, I excelled in <strong>algorithmic competitions</strong>, math contests, and sports events, earning multiple awards. I also enjoy mentoring students in the fundamentals of competitive programming, sharing my knowledge and experience. I’m eager to bring my problem-solving skills, dedication, and enthusiasm for technology to new challenges and opportunities in the tech industry.
-    </div>
-    
-    
-    <div class="button-container">
-        <a href="{% url 'about' %}" class="btn btn-primary">About Me</a>
-        <a href="{% url 'portfolio' %}" class="btn btn-primary">View My Portfolio</a>
-{#        <a href="{% url 'contact' %}" class="btn btn-primary">Contact Me</a>#}
+        I am a second-year <strong>Computer Science</strong> student at <strong>Babeș-Bolyai University</strong> with a
+        passion for <strong>competitive programming</strong>, sports, reading, and personal development. Throughout high
+        school, I excelled in <strong>algorithmic competitions</strong>, math contests, and sports events, earning
+        multiple awards. I also enjoy mentoring students in the fundamentals of competitive programming, sharing my
+        knowledge and experience. I’m eager to bring my problem-solving skills, dedication, and enthusiasm for
+        technology to new challenges and opportunities in the tech industry.
     </div>
 
-    
-    <!-- Personal Journal Section -->
-    <div id="journal-section">
-        <h3>Personal Journal</h3>
-        <ul>
-            <li><a href="{% url 'journal_entry' entry_id=1 %}">My Journey into Competitive Programming</a></li>
-{#            <li><a href="{% url 'journal_entry' entry_id=2 %}">Lessons Learned from Algorithmic Contests</a></li>#}
-            <li><a href="{% url 'journal_entry' entry_id=3 %}">Balancing Sports and Academics</a></li>
-{#            <li><a href="{% url 'journal_entry' entry_id=4 %}">Why I Love Teaching Competitive Programming</a></li>#}
-            <li><a href="{% url 'journal_entry' entry_id=5 %}">Prepare for “Day One”</a></li>
-        </ul>
+    <div class="button-container"
+        style="margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="{% url 'about' %}" class="btn btn-primary">About Me</a>
+        <a href="{% url 'portfolio' %}" class="btn btn-primary">View My Portfolio</a>
     </div>
 </div>
 
+<!-- Personal Journal Section -->
+<div class="content-glass-card">
+    <h3 class="section-title"
+        style="text-align: left; font-size: 2rem; margin-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">
+        Personal Journal</h3>
+    <ul style="list-style: none; padding: 0;">
+        <li style="margin-bottom: 15px;">
+            <a href="{% url 'journal_entry' entry_id=1 %}"
+                style="text-decoration: none; color: #ffcc00; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-book-open"></i> My Journey into Competitive Programming
+            </a>
+        </li>
+        <li style="margin-bottom: 15px;">
+            <a href="{% url 'journal_entry' entry_id=3 %}"
+                style="text-decoration: none; color: #ffcc00; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-dumbbell"></i> Balancing Sports and Academics
+            </a>
+        </li>
+        <li style="margin-bottom: 15px;">
+            <a href="{% url 'journal_entry' entry_id=5 %}"
+                style="text-decoration: none; color: #ffcc00; font-size: 1.2rem; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-briefcase"></i> Prepare for “Day One”
+            </a>
+        </li>
+    </ul>
+</div>
 
-
-    
 {% endblock %}
