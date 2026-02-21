@@ -1,16 +1,32 @@
 {% extends "cvsite/layout.html" %}
 
 {% block content %}
-    <div class="entry-container">
-        <h2 class="entry-title">{{ entry.title }}</h2>
-        <p class="entry-date"><i class="fas fa-calendar-alt"></i> <strong>Published on:</strong> {{ entry.date }}</p>
-        <div class="entry-content">
-            <p>{{ entry.content|linebreaks }}</p>
+<div class="journal-entry-page">
+    <div class="journal-entry-container">
+        <a href="{% url 'index' %}" class="journal-entry-back" title="Back to Home">
+            <i class="fas fa-arrow-left"></i>
+            <span>Home</span>
+        </a>
+
+        <article class="journal-entry-card">
+            <header class="journal-entry-header">
+                <h1 class="journal-entry-title">{{ entry.title }}</h1>
+                <p class="journal-entry-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>{{ entry.date }}</span>
+                </p>
+            </header>
+            <div class="journal-entry-content">
+                {{ entry.content|linebreaks }}
+            </div>
+        </article>
+
+        <div class="journal-entry-actions">
+            <a href="{% url 'index' %}" class="btn-about btn-about-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Home</span>
+            </a>
         </div>
     </div>
-
-    <div class="back-home">
-        <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
-    </div>
-
+</div>
 {% endblock %}

@@ -2,8 +2,25 @@ from django.shortcuts import render
 
 # Create your views here.
 
+# Featured journal entries for homepage (id, title, icon)
+FEATURED_JOURNAL_IDS = [
+    (1, "book-open"),   # My Journey into Competitive Programming
+    (3, "dumbbell"),    # Balancing Sports and Academics
+    (5, "briefcase"),   # Prepare for Day 1
+]
+
+
 def index(request):
-    return render(request, "cvsite/index.html")
+    featured_entries = [
+        {"id": eid, "title": JOURNAL_ENTRIES[eid]["title"], "icon": icon}
+        for eid, icon in FEATURED_JOURNAL_IDS
+        if eid in JOURNAL_ENTRIES
+    ]
+    return render(
+        request,
+        "cvsite/index.html",
+        {"featured_entries": featured_entries},
+    )
 
 def about(request):
     return render(request, "cvsite/about.html")

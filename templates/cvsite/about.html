@@ -1,104 +1,82 @@
 {% extends "cvsite/layout.html" %}
 
 {% block content %}
-<div class="content-glass-card">
-    <div class="intro-text">
-        <h1 style="color: #ffcc00; margin-bottom: 2rem;">Hi, I am <span class="highlight" style="color: #fff;">Grancea
-                Alexandru</span>, and this is my programming journey!</h1>
-        <p style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.9;">
-            I’m currently in my third year at <strong>Babeș-Bolyai University</strong> in Cluj-Napoca, where I’m
-            pursuing my
-            passion for computer science. From a young age, I was always curious about how the technology around us
-            worked,
-            and it didn’t take long for me to realize that programming was the key to understanding and shaping that
-            world.
-        </p>
-        <p style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.9;">
-            My interest in programming truly took off in high school, where I started learning algorithms in C++. By the
-            10th grade, I had mastered the school curriculum and sought out new challenges. This led me to join the
-            <strong>Center for Performance in Informatics</strong>, where I dived deep into advanced algorithms and data
-            structures. In my final year, I was given the rewarding opportunity to teach younger students advanced
-            algorithmic techniques.
-        </p>
-        <p style="margin-bottom: 1.5rem; font-size: 1.3rem; line-height: 1.9;">
-            To broaden my skillset, I also completed Harvard's <strong>CS50</strong> course, which introduced me to new
-            technologies and reinforced my passion for the field. The course expanded my horizons and gave me the
-            confidence
-            to take on more complex projects.
-        </p>
-        <p style="margin-bottom: 2rem; font-size: 1.3rem;">
-            You can explore my personal projects in the <strong> <a href="{% url 'portfolio' %}"
-                    style="color: #ffcc00;">projects tab </a></strong>!
-        </p>
+<div class="about-page">
+    <div class="about-container-inner">
+        <!-- Hero -->
+        <section class="about-hero">
+            <h1 class="about-title">About Me</h1>
+            <p class="about-tagline">My programming journey</p>
+        </section>
 
-        <div style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1rem;">
-            <p style="margin-bottom: 10px; font-size: 1.2rem;">Connect with me:</p>
-            <div class="social-links" style="display: flex; gap: 10px; flex-wrap: wrap;">
-                <a href="https://github.com/Nanu25" target="_blank" class="btn btn-github">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-                <a href="https://www.linkedin.com/in/alexandru-grancea-904a032b6/" target="_blank"
-                    class="btn btn-website">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
+        <!-- Story -->
+        <section class="about-card">
+            <h2 class="about-card-title">My story</h2>
+            <p class="about-text">
+                I'm in my third year at <strong>Babeș-Bolyai University</strong> in Cluj-Napoca, pursuing my passion for computer science. From a young age I was curious about how technology works, and programming became the key to understanding and shaping that world.
+            </p>
+            <p class="about-text">
+                My interest took off in high school with algorithms in C++. By 10th grade I had mastered the school curriculum and joined the <strong>Center for Performance in Informatics</strong>, where I dove into advanced algorithms and data structures. In my final year I had the chance to teach younger students advanced algorithmic techniques.
+            </p>
+            <p class="about-text">
+                I also completed Harvard's <strong>CS50</strong> course, which introduced me to new technologies and gave me the confidence to take on more complex projects.
+            </p>
+            <p class="about-text about-text-last">
+                You can explore my work in the <a href="{% url 'portfolio' %}" class="about-link">projects section</a>.
+            </p>
+            <div class="about-connect-inline">
+                <span class="about-connect-label">Connect with me</span>
+                <div class="about-social">
+                    <a href="https://github.com/Nanu25" target="_blank" rel="noopener noreferrer" class="btn-about btn-about-ghost">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/alexandru-grancea-904a032b6/" target="_blank" rel="noopener noreferrer" class="btn-about btn-about-accent">
+                        <i class="fab fa-linkedin"></i>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
             </div>
-        </div>
+        </section>
+
+        <!-- Achievements -->
+        <section class="about-card about-achievements" id="achievements">
+            <h2 class="about-card-title">
+                <i class="fas fa-trophy"></i>
+                <span>Achievements</span>
+            </h2>
+            <ul class="about-list">
+                <li> Bronze medal at the National Computer Science Olympiad</li>
+                <li> Third place in a national algorithm contest</li>
+                <li> Multiple prizes at various algorithmic contests</li>
+                <li> National Olympiad in handball</li>
+                <li> Winner of numerous sports competitions</li>
+            </ul>
+        </section>
+
+        <!-- Back -->
+        <section class="about-actions">
+            <a href="{% url 'index' %}" class="btn-about btn-about-back">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Home</span>
+            </a>
+        </section>
     </div>
-</div>
-
-<!-- Achievements section -->
-<div id="achievements" class="content-glass-card hidden">
-    <h3 class="section-title"
-        style="color: #ffcc00; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
-        Achievements</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: start; gap: 10px;">
-            <style="color: #ffcc00; margin-top: 5px;"></i> Bronze medal at the National Computer
-                Science Olympiad
-        </li>
-        <li style="margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: start; gap: 10px;">
-            <style="color: #ffcc00; margin-top: 5px;"></i> Third place in a national algorithm
-                contest
-        </li>
-        <li style="margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: start; gap: 10px;">
-            <style="color: #ffcc00; margin-top: 5px;"></i> Multiple prizes at various
-                algorithmic contests
-        </li>
-        <li style="margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: start; gap: 10px;">
-            <style="color: #ffcc00; margin-top: 5px;"></i> National Olympiad in handball
-        </li>
-        <li style="margin-bottom: 15px; font-size: 1.3rem; display: flex; align-items: start; gap: 10px;">
-            <style=" color: #ffcc00; margin-top: 5px;"></i> Winner of numerous sports
-                competitions
-        </li>
-    </ul>
-</div>
-
-<div class="back-home" style="margin: 2rem 0;">
-    <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
 </div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
-        const achievementsSection = document.getElementById('achievements');
-
-        function isInViewport(element) {
-            const rect = element.getBoundingClientRect();
-            return (
-                rect.top <= (window.innerHeight || document.documentElement.clientHeight)
-            );
+        const section = document.getElementById('achievements');
+        if (!section) return;
+        function inView(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top <= (window.innerHeight || document.documentElement.clientHeight);
         }
-
-        window.addEventListener('scroll', function () {
-            if (isInViewport(achievementsSection)) {
-                achievementsSection.classList.add('visible'); // Add visible class when in view
-            }
-        });
-
-        // Initial check
-        if (isInViewport(achievementsSection)) {
-            achievementsSection.classList.add('visible');
+        function check() {
+            if (inView(section)) section.classList.add('visible');
         }
+        window.addEventListener('scroll', check);
+        check();
     });
 </script>
 {% endblock %}

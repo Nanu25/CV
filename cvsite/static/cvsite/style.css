@@ -1,11 +1,27 @@
 /* Reset and base styles */
-html,
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
     width: 100%;
     min-height: 100%;
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
 
 /*
@@ -186,83 +202,148 @@ footer {
     }
 }
 
-/* Media queries for responsive adjustments */
+/* Global mobile adjustments */
 @media (max-width: 768px) {
     body::before {
         background-size: 300% 300%;
-        /* Smaller background size for better performance on mobile */
+    }
+
+    main {
+        padding: 12px 16px 20px;
+    }
+
+    header {
+        padding: 6px 16px;
     }
 
     .name-container {
-        flex-direction: column;
-        text-align: center;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 0.9rem;
     }
 
     .profile-photo {
-        margin-top: 15px;
+        width: 42px;
+        height: 42px;
+    }
+
+    footer {
+        margin-top: 32px;
+    }
+
+    .follow-me {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    footer h4 {
+        font-size: 0.7rem;
+    }
+
+    footer .btn-outline-secondary {
+        padding: 6px 12px;
+        font-size: 0.75rem;
     }
 }
 
-/*!* General body styles *!*/
-/*body {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    font-family: Arial, sans-serif;*/
-/*    min-height: 100vh;*/
-/*    display: flex;*/
-/*    flex-direction: column;*/
-/*    background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);*/
-/*    background-size: 400% 400%;*/
-/*    animation: gradient 20s ease infinite;*/
-/*    color: #f5f5f5;*/
-/*}*/
+@media (max-width: 480px) {
+    main {
+        padding: 10px 12px 16px;
+    }
 
-/*!* Gradient animation *!*/
-/*@keyframes gradient {*/
-/*    0% { background-position: 0% 50%; }*/
-/*    50% { background-position: 100% 50%; }*/
-/*    100% { background-position: 0% 50%; }*/
-/*}*/
+    header h1 {
+        font-size: 0.85rem;
+    }
+}
 
 /* Header styles */
 header {
-    background-color: rgba(0, 0, 0, 0.6);
-    /* Semi-transparent for contrast */
-    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 8px 20px;
     text-align: center;
-    font-size: 2em;
+    font-size: 1em;
     color: #f5f5f5;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Main content styles */
 main {
     flex: 1;
-    padding: 20px;
+    padding: 16px 20px 20px;
 }
 
-/* Footer styles */
+/* Footer - 2026 slim bar */
 footer {
-    background-color: #222;
-    color: #f5f5f5;
-    text-align: center;
-    padding: 40px 0;
+    margin-top: 48px;
+    padding: 0;
+    background: transparent;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
     position: relative;
-    bottom: 0;
     width: 100%;
-    clip-path: polygon(0 75%, 100% 0%, 100% 100%, 0% 100%);
 }
 
-.footer .social-links {
+footer::before {
+    display: none;
+}
+
+footer p {
+    display: none;
+}
+
+.follow-me {
     display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 16px;
+    padding: 20px 24px;
+    flex-wrap: wrap;
 }
 
 footer h4 {
-    margin-bottom: 1px;
-    /* Increase space between header and buttons */
-    font-size: 2.2rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(255, 255, 255, 0.4);
+    margin: 0;
+}
+
+.footer .social-links,
+footer .social-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Footer social buttons - compact */
+footer .btn-outline-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+footer .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
     color: #fff;
+    transform: translateY(-1px);
 }
 
 a {
@@ -278,49 +359,42 @@ a:hover {
 .name-container {
     display: flex;
     align-items: center;
-    /* Align items vertically */
     justify-content: center;
-    /* Center everything */
-    gap: 15px;
-    /* Space between name and photo */
+    gap: 12px;
 }
 
 /* Header styles for name */
 header h1 {
-    font-size: 2.2em;
-    background: linear-gradient(135deg, #f5f5f5, #00b4db);
+    font-size: 1.1rem;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.7) 100%);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
     text-align: center;
-    letter-spacing: 3px;
+    letter-spacing: 0.05em;
     text-transform: uppercase;
     font-weight: 600;
-    margin: 20px 0 10px 0;
-    opacity: 0;
-    transform: translateY(-30px);
-    animation: fadeInMoveDown 1.5s ease-out forwards;
-    text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+    margin: 0;
     display: flex;
     flex-direction: column;
-    /* Keep first and last name stacked */
+    gap: 2px;
 }
 
 .first-name,
 .last-name {
     display: block;
-    /* Ensure they appear on different rows */
+    line-height: 1.2;
 }
 
 /* Profile photo styling */
 .profile-photo {
-    width: 150px;
-    height: 150px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    /* Slight shadow */
-    border: 3px solid #00b4db;
-    /* Add border matching gradient */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.15);
 }
 
 
@@ -403,19 +477,29 @@ header h1 {
     transform: translateY(-3px);
 }
 
-/* Secondary Button (outline) */
+/* Secondary Button (outline) - Footer social links */
 .btn-outline-secondary {
-    background-color: transparent;
-    color: #ffcc00;
-    border: 2px solid #ffcc00;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .btn-outline-secondary:hover {
-    background-color: #ffcc00;
-    color: #333;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
     transform: translateY(-2px);
-    /* Adds hover effect */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Initially hidden state */
@@ -509,259 +593,6 @@ header h1 {
     /* Smooth color transition */
 }
 
-/* General styles for the journal container */
-#journal-section {
-    background-color: #1e1e1e;
-    /* Dark background for contrast */
-    padding: 40px;
-    border-radius: 10px;
-    color: #f5f5f5;
-    max-width: 800px;
-    margin: 50px auto;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Styling the Journal heading */
-#journal-section h3 {
-    font-size: 2em;
-    text-align: center;
-    color: #ff5733;
-    /* Warm color for contrast */
-    margin-bottom: 20px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-/* Styling the list of journal entries */
-#journal-section ul {
-    list-style: none;
-    padding: 0;
-}
-
-#journal-section ul li {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-    padding-left: 20px;
-    position: relative;
-    line-height: 1.6;
-    font-weight: 300;
-}
-
-/* Ensure proper spacing for the notebook emoji */
-#journal-section ul li {
-    padding-left: 50px;
-    /* Moves text to the right */
-    position: relative;
-    /* Ensures positioning works correctly */
-}
-
-#journal-section ul li::before {
-    content: '📝';
-    /* Notebook emoji */
-    position: absolute;
-    left: 0;
-    color: #ff5733;
-    /* Match the heading color */
-    font-size: 1.3em;
-    line-height: 1.6;
-}
-
-/* Styling journal entry links */
-#journal-section ul li a {
-    color: #f5f5f5;
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-/* Hover effect */
-#journal-section ul li:hover a {
-    color: #ff5733;
-    /* Highlight on hover */
-}
-
-/* Styles for the entry container */
-.entry-container {
-    max-width: 800px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.6);
-    /* Slightly transparent background */
-    color: #f5f5f5;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    text-align: justify;
-    animation: fadeInMoveDown 1.5s ease-out forwards;
-}
-
-/* Entry title */
-.entry-container h2 {
-    font-size: 2em;
-    text-align: center;
-    color: #ffcc00;
-    margin-bottom: 15px;
-}
-
-/* Entry date */
-.entry-container p strong {
-    color: #00b4db;
-}
-
-/* Entry content */
-.entry-container p {
-    font-size: 1.2em;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.entry-container {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 25px;
-    background-color: rgba(0, 0, 0, 0.7);
-    /* More contrast */
-    color: #f5f5f5;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    text-align: justify;
-    animation: fadeInMoveDown 1.5s ease-out forwards;
-}
-
-/* Entry Title */
-.entry-title {
-    font-size: 2.2em;
-    text-align: center;
-    color: #ffcc00;
-    margin-bottom: 15px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-/* Entry Date */
-.entry-date {
-    font-size: 1em;
-    text-align: center;
-    color: #00b4db;
-    margin-bottom: 15px;
-    font-style: italic;
-}
-
-/* Entry Content */
-.entry-content {
-    font-size: 1.2em;
-    line-height: 1.8;
-    margin-bottom: 20px;
-    padding: 10px;
-    background: rgba(255, 255, 255, 0.1);
-    border-left: 4px solid #ffcc00;
-    border-radius: 8px;
-}
-
-
-
-
-/* Portfolio Container */
-.portfolio-container {
-    padding: 0.5rem 0 2rem 0;
-    /* Reduced top padding */
-    max-width: 900px;
-    margin: 0 auto;
-}
-
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    color: #ffcc00;
-    margin-bottom: 0.2rem;
-    /* Reduced margin */
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-.section-subtitle {
-    text-align: center;
-    color: #f5f5f5;
-    margin-bottom: 1.5rem;
-    /* Reduced margin */
-    font-style: italic;
-    opacity: 0.8;
-}
-
-/* Vertical Scroll Wrapper */
-.vertical-scroll-container {
-    height: 800px;
-    /* Increased height as requested */
-    overflow-y: auto;
-    /* Allow manual scroll */
-    position: relative;
-    /* Mask/Fade effect */
-    mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-    -webkit-mask-image: linear-gradient(to bottom, transparent, black 5%, black 95%, transparent);
-
-    /* Hide scrollbar for aesthetics (optional, but cleaner) */
-    scrollbar-width: thin;
-    scrollbar-color: #ffcc00 rgba(20, 20, 20, 0.5);
-}
-
-.scrolling-content {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding-bottom: 2rem;
-    /* Animation removed in favor of JS for manual scroll support */
-}
-
-/* Glass Card Style */
-.glass-card {
-    /* flex: auto; not needed for vertical */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    /* Darker, more visible background */
-    background: rgba(20, 20, 20, 0.85);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid rgba(255, 204, 0, 0.2);
-    /* Subtle gold border */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
-
-    border-radius: 20px;
-    padding: 2rem;
-    color: #f5f5f5;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-
-    /* Ensure it takes full width of container padding */
-    width: 100%;
-    box-sizing: border-box;
-    margin: 0 auto;
-}
-
-.glass-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7);
-    border-color: rgba(255, 204, 0, 0.6);
-    background: rgba(20, 20, 20, 0.95);
-}
-
-/* Card Content */
-.project-title {
-    font-size: 1.8rem;
-    color: #ffcc00;
-    margin-bottom: 1rem;
-    font-weight: bold;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
-    padding-bottom: 0.5rem;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-}
-
-.project-description {
-    font-size: 1.1rem;
-    line-height: 1.6;
-    color: #e0e0e0;
-    margin-bottom: 1.5rem;
-}
-
 /* General Button Styles */
 .btn {
     display: inline-flex;
@@ -826,197 +657,6 @@ header h1 {
     background: linear-gradient(135deg, #00c6ff, #0072ff);
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(0, 180, 219, 0.4);
-}
-
-@media (max-width: 768px) {
-    .portfolio-container {
-        padding: 1rem;
-    }
-
-    .vertical-scroll-container {
-        height: 500px;
-    }
-}
-
-
-.social-links {
-    margin-top: 20px;
-}
-
-
-.social-links .btn {
-    margin-right: 10px;
-    margin-bottom: 10px;
-    display: inline-block;
-    color: #fff;
-    border-color: #fff;
-}
-
-.social-links .btn i {
-    margin-right: 8px;
-}
-
-.social-links .btn:hover {
-    background-color: #fff;
-    color: #2c2c2c;
-}
-
-.back-home {
-    text-align: center;
-    max-width: 800px;
-    /* Keeps content readable */
-    margin: 0 auto;
-    /* Centers the container */
-}
-
-
-@media (max-width: 768px) {
-    body::before {
-        background: linear-gradient(lightskyblue,
-                darkblue,
-                #00bcd4,
-                steelblue);
-        background-size: 100% 400%;
-        animation: verticalGradientFlow 15s ease infinite;
-    }
-
-    @keyframes verticalGradientFlow {
-        0% {
-            background-position: 0% 0%;
-        }
-
-        50% {
-            background-position: 0% 100%;
-        }
-
-        100% {
-            background-position: 0% 0%;
-        }
-    }
-
-    /* Header adjustments */
-    header {
-        width: 100%;
-        overflow: hidden;
-        padding: 15px 10px;
-    }
-
-    header h1 {
-        font-size: 2em;
-        word-wrap: break-word;
-        max-width: 100%;
-    }
-
-    /* Card adjustments for mobile */
-    .card {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-
-    /* Adjust padding and margin for mobile */
-    body,
-    .container {
-        padding: 0 10px;
-        /* Keep slight padding to prevent content touching edges */
-    }
-
-    /* Footer adjustments */
-    footer {
-        position: relative;
-        bottom: 0;
-        padding: 20px 15px;
-        text-align: center;
-        width: 100%;
-        box-sizing: border-box;
-        margin: 0;
-        clip-path: none;
-
-    }
-
-    footer p {
-        display: none;
-        /* Completely hide the paragraph with the dot */
-    }
-
-    /* Social links */
-    .social-links {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 12px;
-        width: 100%;
-    }
-
-    .social-links a {
-        margin: 5px;
-        padding: 8px 15px;
-    }
-
-    /* Name container adjustments */
-    .name-container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 15px;
-        width: 100%;
-        max-width: 100%;
-    }
-
-    /* Profile photo adjustments */
-    .profile-photo {
-        width: 120px;
-        height: 120px;
-        margin: 0 auto;
-    }
-}
-
-
-/* For very small screens, like smartphones */
-@media (max-width: 480px) {
-
-    /* Make font sizes smaller to prevent overflow */
-    body {
-        font-size: 14px;
-    }
-
-    header h1 {
-        font-size: 1.6em;
-        /* Further reduced title size */
-        letter-spacing: normal;
-        /* Remove any letter spacing that could cause overflow */
-    }
-
-    /* Ensure first-name and last-name don't overflow */
-    .first-name,
-    .last-name {
-        display: block;
-        /* Stack name parts vertically if needed */
-        max-width: 100%;
-    }
-
-    /* Footer styling for very small screens */
-    footer {
-        padding: 15px 10px;
-        clip-path: none;
-    }
-
-    footer p {
-        display: none;
-        /* Completely hide the paragraph with the dot */
-    }
-
-    /* Keep social links horizontal but with proper spacing */
-    .social-links {
-        gap: 10px;
-    }
-
-    .social-links a {
-        font-size: 0.9em;
-        padding: 7px 12px;
-    }
-
-    /* Further profile photo adjustments */
 }
 
 /* ============================================================================
@@ -1106,7 +746,7 @@ header h1 {
 /* ===== HERO SECTION ===== */
 .portfolio-hero {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 64px;
     animation: fadeInUp 0.8s ease-out;
 }
 
@@ -1122,60 +762,59 @@ header h1 {
 }
 
 .portfolio-title {
-    font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    margin: 0 0 12px 0;
-    background: linear-gradient(135deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+    font-size: clamp(1.85rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin: 0 0 8px 0;
+    color: #fff;
+    line-height: 1.2;
 }
 
 .portfolio-tagline {
-    font-size: 1.1rem;
+    font-size: 0.95rem;
     color: rgba(255, 255, 255, 0.5);
-    margin: 0 0 40px 0;
+    margin: 0 0 28px 0;
     font-weight: 400;
+    letter-spacing: 0.01em;
 }
 
-/* Stats */
+/* Stats - compact pill */
 .portfolio-stats {
     display: inline-flex;
     align-items: center;
-    gap: 32px;
-    padding: 20px 40px;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.06);
-    border-radius: 16px;
+    gap: 24px;
+    padding: 14px 28px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 100px;
 }
 
 .stat-item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
 }
 
 .stat-number {
-    font-size: 1.75rem;
+    font-size: 1.35rem;
     font-weight: 700;
     color: #fff;
     line-height: 1;
 }
 
 .stat-label {
-    font-size: 0.75rem;
-    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.4);
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     font-weight: 500;
 }
 
 .stat-divider {
     width: 1px;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.1);
+    height: 24px;
+    background: rgba(255, 255, 255, 0.08);
 }
 
 /* ===== TIMELINE ===== */
@@ -1433,13 +1072,34 @@ header h1 {
     }
     
     .portfolio-hero {
-        margin-bottom: 60px;
+        margin-bottom: 48px;
+    }
+    
+    .portfolio-title {
+        font-size: 1.6rem;
+    }
+    
+    .portfolio-tagline {
+        font-size: 0.9rem;
+        margin-bottom: 22px;
     }
     
     .portfolio-stats {
-        flex-direction: column;
-        gap: 16px;
-        padding: 24px 32px;
+        flex-direction: row;
+        gap: 20px;
+        padding: 12px 20px;
+    }
+    
+    .stat-number {
+        font-size: 1.2rem;
+    }
+    
+    .stat-label {
+        font-size: 0.6rem;
+    }
+    
+    .stat-divider {
+        height: 20px;
     }
     
     .stat-divider {
@@ -1490,7 +1150,675 @@ header h1 {
     }
 }
 
-/* Modern Content Container (For Index and About) */
+/* ============================================================================
+   INDEX / HOMEPAGE - 2026 MODERN DESIGN
+   ============================================================================ */
+
+.index-page {
+    min-height: 100%;
+    padding: 48px 24px 80px;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+/* Background: match portfolio dark theme */
+.index-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 100% 80% at 50% -30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+        radial-gradient(ellipse 70% 50% at 100% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+        linear-gradient(180deg, #09090b 0%, #0c0c10 50%, #0a0a0e 100%);
+    z-index: -2;
+}
+
+.index-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.index-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Hero */
+.index-hero {
+    text-align: center;
+    margin-bottom: 64px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+@keyframes indexFadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.index-page .index-hero {
+    animation: indexFadeInUp 0.8s ease-out;
+}
+
+.index-name-photo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.index-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.index-name {
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.index-intro {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0 0 36px 0;
+    text-align: center;
+}
+
+.index-intro strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+.index-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+}
+
+.btn-index {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 26px;
+    border-radius: 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-primary-index {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
+
+.btn-primary-index:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.btn-accent-index {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.3);
+}
+
+.btn-accent-index:hover {
+    box-shadow: 0 8px 28px rgba(99, 102, 241, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn-ghost-index {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-ghost-index:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+/* Journal card */
+.index-journal {
+    animation: indexFadeInUp 0.6s ease-out 0.15s backwards;
+}
+
+.journal-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 32px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journal-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+.journal-title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+.journal-title i {
+    color: #a5b4fc;
+    font-size: 1.1rem;
+}
+
+.journal-desc {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0 0 24px 0;
+}
+
+.journal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.journal-list li {
+    margin: 0;
+}
+
+.journal-link {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 18px;
+    border-radius: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: background 0.25s ease, color 0.25s ease;
+    margin-bottom: 6px;
+}
+
+.journal-link:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.journal-link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: rgba(99, 102, 241, 0.15);
+    color: #a5b4fc;
+    flex-shrink: 0;
+}
+
+.journal-link-title {
+    flex: 1;
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+.journal-link-arrow {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    transition: transform 0.25s ease;
+}
+
+.journal-link:hover .journal-link-arrow {
+    transform: translateX(4px);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+    .index-page {
+        padding: 32px 16px 60px;
+    }
+    .index-photo {
+        width: 140px;
+        height: 140px;
+    }
+    .index-ctas {
+        flex-direction: column;
+    }
+    .btn-index {
+        justify-content: center;
+    }
+    .journal-card {
+        padding: 24px;
+    }
+}
+
+/* ============================================================================
+   ABOUT PAGE - 2026 MODERN DESIGN
+   ============================================================================ */
+
+.about-page {
+    min-height: 100%;
+    padding: 48px 24px 80px;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.about-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 100% 80% at 50% -30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+        radial-gradient(ellipse 70% 50% at 100% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+        linear-gradient(180deg, #09090b 0%, #0c0c10 50%, #0a0a0e 100%);
+    z-index: -2;
+}
+
+.about-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.about-container-inner {
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: indexFadeInUp 0.6s ease-out;
+}
+
+.about-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 8px 0;
+}
+
+.about-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.about-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 32px;
+    margin-bottom: 24px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.35);
+}
+
+.about-card-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0 0 20px 0;
+}
+
+.about-card-title i {
+    color: #a5b4fc;
+}
+
+.about-text {
+    font-size: 1.05rem;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.75);
+    margin: 0 0 18px 0;
+}
+
+.about-text strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+.about-text-last {
+    margin-bottom: 0;
+}
+
+.about-connect-inline {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.about-connect-inline .about-connect-label {
+    margin: 0;
+}
+
+.about-connect-inline .about-social {
+    justify-content: flex-start;
+}
+
+.about-link {
+    color: #a5b4fc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.about-link:hover {
+    color: #c7d2fe;
+}
+
+.about-achievements {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.about-achievements.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.about-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.about-list li:last-child {
+    border-bottom: none;
+}
+
+.about-list li i {
+    color: rgba(245, 158, 11, 0.9);
+    font-size: 0.9rem;
+    flex-shrink: 0;
+}
+
+.about-actions {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+.about-connect {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.about-connect-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.about-social {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.btn-about {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 22px;
+    border-radius: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Inter', sans-serif;
+}
+
+.btn-about-ghost {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.btn-about-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+.btn-about-accent {
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+    border: none;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(99, 102, 241, 0.25);
+}
+
+.btn-about-accent:hover {
+    box-shadow: 0 8px 24px rgba(99, 102, 241, 0.35);
+    transform: translateY(-2px);
+}
+
+.btn-about-back {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.btn-about-back:hover {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .about-page {
+        padding: 32px 16px 60px;
+    }
+    .about-card {
+        padding: 24px;
+    }
+    .about-actions {
+        margin-top: 32px;
+    }
+}
+
+/* ============================================================================
+   JOURNAL ENTRY PAGE - 2026 MODERN DESIGN
+   ============================================================================ */
+
+.journal-entry-page {
+    min-height: 100%;
+    padding: 48px 24px 80px;
+    box-sizing: border-box;
+    position: relative;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.journal-entry-page::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 100% 80% at 50% -30%, rgba(99, 102, 241, 0.1) 0%, transparent 50%),
+        radial-gradient(ellipse 80% 60% at 0% 100%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+        radial-gradient(ellipse 70% 50% at 100% 80%, rgba(245, 158, 11, 0.05) 0%, transparent 40%),
+        linear-gradient(180deg, #09090b 0%, #0c0c10 50%, #0a0a0e 100%);
+    z-index: -2;
+}
+
+.journal-entry-page::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.journal-entry-container {
+    max-width: 680px;
+    margin: 0 auto;
+}
+
+.journal-entry-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding: 8px 0;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.journal-entry-back:hover {
+    color: #fff;
+    transform: translateX(-4px);
+}
+
+.journal-entry-back i {
+    font-size: 0.8rem;
+}
+
+.journal-entry-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 40px;
+    margin-bottom: 32px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.journal-entry-card:hover {
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.35);
+}
+
+.journal-entry-header {
+    margin-bottom: 28px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.journal-entry-title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.journal-entry-date {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.journal-entry-date i {
+    color: #a5b4fc;
+    font-size: 0.85rem;
+}
+
+.journal-entry-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.journal-entry-content p {
+    margin: 0 0 1em 0;
+}
+
+.journal-entry-content p:last-child {
+    margin-bottom: 0;
+}
+
+.journal-entry-actions {
+    display: flex;
+    justify-content: center;
+}
+
+.journal-entry-actions .btn-about-back {
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .journal-entry-page {
+        padding: 32px 16px 60px;
+    }
+    .journal-entry-container {
+        max-width: 100%;
+    }
+    .journal-entry-card {
+        padding: 24px;
+    }
+    .journal-entry-title {
+        font-size: 1.35rem;
+    }
+}
+
+/* Modern Content Container (For other pages) */
 .content-glass-card {
     background: rgba(20, 20, 20, 0.7);
     backdrop-filter: blur(10px);
@@ -1502,12 +1830,6 @@ header h1 {
     margin: 2rem auto;
     max-width: 900px;
     color: #f5f5f5;
-}
-
-/* Enhance Index Intro */
-.intro-text,
-#journal-section {
-    /* We can apply the glass style directly via class in HTML */
 }
 
 /* Enhance About Page */
