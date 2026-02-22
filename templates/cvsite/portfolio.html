@@ -1,79 +1,105 @@
 {% extends "cvsite/layout.html" %}
 
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
 {% block content %}
-    <div class="projects-grid">
-        <div class="project-card">
-            <p>
-                This project is a habit tracker that I built using Django. It allows users to create habits, track their progress, and view their statistics. The app is designed to help users build and maintain healthy habits by providing them with a simple and intuitive interface to track their progress. This is my final project for the CS50 course.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/Nanu25/Habits" class="btn btn-github" target="_blank">
-                      <i class="fab fa-github"></i> View on GitHub
-                </a>
-                <a href="https://my-habit-tracker-0591dbd6deef.herokuapp.com/" class="btn btn-website" target="_blank">Visit Website</a>
-            </div>
-        </div>
-        
-        <div class="project-card">
-            <p>
-                This project is a personal fitness tracking web application, built from scratch using React, Node.js, and PostgreSQL. Users can create accounts, log their workout sessions, track personal records, and visualize their progress with interactive charts and dashboards. The platform features a comprehensive exercise library, metrics management, and an AI-powered fitness assistant for personalized advice. All features, from authentication to data visualization and AI chat, were designed and implemented independently, with a focus on usability and modern web technologies.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/Nanu25/GymJournal/tree/Heroku" class="btn btn-github" target="_blank">
-                      <i class="fab fa-github"></i> View on GitHub
-                </a>
-                <a href="https://gymjournal-75451ef51cbf.herokuapp.com/" class="btn btn-website" target="_blank">Visit Website</a>
-            </div>
-        </div>
-{#        #}
-{#        <div class="project-card">#}
-{#            <p>#}
-{#                This project is a social networking website inspired by Twitter, built using Django. Users can create accounts, post tweets, follow other users, and interact with tweets through likes and comments. The platform also features a timeline that displays tweets from users' followers. This project is inspired from CS50 but has a lot of changes.#}
-{#            </p>#}
-{#            <div class="project-links">#}
-{#                <a href="https://github.com/Nanu25/Our-Social-Network" class="btn btn-github" target="_blank">#}
-{#                      <i class="fab fa-github"></i> View on GitHub#}
-{#                </a>#}
-{#                <a href="https://oursocialnetwork-d6a69d2b3ca9.herokuapp.com/" class="btn btn-website" target="_blank">Visit Website</a>#}
-{#            </div>#}
-{#        </div>#}
-{#        #}
-{#        <div class="project-card">#}
-{#            <p>#}
-{#                This project is an E-Commerce website that I built using Django. You can list an item, make bids on the item, add the items to a watchlist, and comment on the items. The website also has a feature to close the auction and declare the winner. This project is part of the CS50 course.#}
-{#            </p>#}
-{#            <div class="project-links">#}
-{#                <a href="https://github.com/Nanu25/E-commerce" class="btn btn-github" target="_blank">GitHub</a>#}
-{#                <a href="https://buysh-b6652a409bcb.herokuapp.com/" class="btn btn-website" target="_blank">Visit Website</a>#}
-{#            </div>#}
-{#        </div>#}
+<div class="full-screen-portfolio">
+    <!-- Floating Back Button -->
+    <a href="{% url 'index' %}" class="fixed-home-btn" title="Back to Home">
+        <i class="fas fa-arrow-left"></i> <span>Home</span>
+    </a>
 
-
-        <div class="project-card">
-            <p>
-                This project is a custom programming language that I built using Java during the first semester of my second year in university. It supports various statements, synchronization mechanisms, and execution flow control. The language includes features like variable assignment, conditional statements, loops, and concurrent execution. This project was part of my coursework and helped me deepen my understanding of compilers, interpreters, and synchronization in programming.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/Nanu25/ToyLanguage" class="btn btn-github" target="_blank">
-                      <i class="fab fa-github"></i> View on GitHub
-                </a>
+    <div class="portfolio-container immersive-container">
+        <!-- Hero Section -->
+        <header class="portfolio-hero">
+            <div class="hero-text">
+                <h1 class="portfolio-title">My Projects</h1>
+                <p class="portfolio-tagline">Building software that solves real problems.</p>
             </div>
-        </div>
-
-        <div class="project-card">
-            <p>
-               This project is a Connect Four game that I built using Python during my first year of university. It implements the Minimax algorithm with Alpha-Beta pruning, allowing the computer to play strategically against the user. The game features a graphical user interface (GUI) built with Pygame, making it interactive and visually appealing. This project helped me explore AI decision-making and optimization techniques in game development.
-            </p>
-            <div class="project-links">
-                <a href="https://github.com/Nanu25/Connect-Four" class="btn btn-github" target="_blank">
-                       <i class="fab fa-github"></i> View on GitHub
-                    </a>
+            
+            <div class="portfolio-stats-bento">
+                <div class="stat-card glass-panel">
+                    <span class="stat-number">{{ stats.total_projects }}</span>
+                    <span class="stat-label">Projects</span>
+                </div>
+                
+                <div class="stat-card glass-panel highlight-card">
+                    <span class="stat-number">{{ stats.years_coding }}+</span>
+                    <span class="stat-label">Years Coding</span>
+                </div>
+                
+                <div class="stat-card glass-panel">
+                    <span class="stat-number">{{ stats.technologies }}+</span>
+                    <span class="stat-label">Technologies</span>
+                </div>
             </div>
+        </header>
+
+        <!-- Timeline -->
+        <div class="timeline-container">
+            <div class="timeline-line" aria-hidden="true"></div>
+            
+            {% for year, projects in portfolio_years %}
+            <section class="timeline-year" data-year="{{ year }}">
+                <div class="year-marker">
+                    <span class="year-badge">{{ year }}</span>
+                </div>
+                
+                <div class="year-projects">
+                    {% for project in projects %}
+                    <article class="project-card {% if project.featured %}project-featured{% endif %}">
+                        {% if project.featured %}
+                        <div class="featured-badge">
+                            <i class="fas fa-star"></i> Featured
+                        </div>
+                        {% endif %}
+                        
+                        <div class="project-header">
+                            <div class="project-icon" data-category="{{ project.category }}">
+                                {% if project.category == "fullstack" %}
+                                <i class="fas fa-layer-group"></i>
+                                {% elif project.category == "web" %}
+                                <i class="fas fa-globe"></i>
+                                {% elif project.category == "ai" %}
+                                <i class="fas fa-brain"></i>
+                                {% elif project.category == "systems" %}
+                                <i class="fas fa-microchip"></i>
+                                {% elif project.category == "mobile" %}
+                                <i class="fas fa-mobile-alt"></i>
+                                {% else %}
+                                <i class="fas fa-code"></i>
+                                {% endif %}
+                            </div>
+                            <h3 class="project-title">{{ project.title }}</h3>
+                        </div>
+                        
+                        <p class="project-description">{{ project.description }}</p>
+                        
+                        <div class="tech-stack">
+                            {% for tech in project.tech_stack %}
+                            <span class="tech-badge">{{ tech }}</span>
+                            {% endfor %}
+                        </div>
+                        
+                        <div class="project-links">
+                            <a href="{{ project.github_url }}" class="btn-project btn-github" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i>
+                                <span>View Code</span>
+                            </a>
+                            {% if project.live_url %}
+                            <a href="{{ project.live_url }}" class="btn-project btn-live" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i>
+                                <span>Live Demo</span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+            {% endfor %}
         </div>
     </div>
-    <br>
-    <br>
-    <div class="back-home">
-            <a href="{% url 'index' %}" class="btn btn-primary">Back to Home</a>
-    </div>
+</div>
 {% endblock %}

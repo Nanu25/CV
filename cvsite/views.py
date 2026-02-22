@@ -2,17 +2,174 @@ from django.shortcuts import render
 
 # Create your views here.
 
+# Featured journal entries for homepage (id, title, icon)
+FEATURED_JOURNAL_IDS = [
+    (1, "book-open"),   # My Journey into Competitive Programming
+    (3, "dumbbell"),    # Balancing Sports and Academics
+    (5, "briefcase"),   # Prepare for Day 1
+]
+
+
 def index(request):
-    return render(request, "cvsite/index.html")
+    featured_entries = [
+        {"id": eid, "title": JOURNAL_ENTRIES[eid]["title"], "icon": icon}
+        for eid, icon in FEATURED_JOURNAL_IDS
+        if eid in JOURNAL_ENTRIES
+    ]
+    return render(
+        request,
+        "cvsite/index.html",
+        {"featured_entries": featured_entries},
+    )
 
 def about(request):
     return render(request, "cvsite/about.html")
 
-def portfolio(request):
-    return render(request, "cvsite/portfolio.html")
+# Hardcoded portfolio projects, grouped by year (newest first)
+PROJECTS_BY_YEAR = {
+    2026: [
+        {
+            "title": "Hough Transform - Parallel Implementation",
+            "description": (
+                "Parallel implementation of the Hough transform for line and circle detection in images. Offers "
+                "two implementations: multi-threaded (C++11 threads) for shared-memory systems and MPI-based "
+                "for distributed clusters. Both preprocessing (grayscale conversion, Canny edge detection) and "
+                "the Hough transform itself are parallelized. Achieves 5–7× speedup on 8 cores (threaded) and "
+                "3–4× speedup on 4 nodes (MPI). Built with C++17, OpenCV, and CMake. Generates edge maps, "
+                "annotated results, and performance metrics."
+            ),
+            "tech_stack": ["C++17", "OpenCV", "CMake", "MPI", "Multithreading", "OpenMP"],
+            "category": "systems",
+            "github_url": "https://github.com/Nanu25/HoughTransform",
+            "live_url": None,
+            "featured": False,
+        },
+        {
+            "title": "Recipe Organizer (Culina)",
+            "description": (
+                "Mobile app for cooking enthusiasts to manage and organize recipes. Add recipes with ingredients "
+                "and steps, track nutritional info (protein, carbs, fat) with automatic calorie calculation. "
+                "Search by name/ingredients/steps, filter by nutritional range, and mark favorites. Built with "
+                "Jetpack Compose (Material 3) for a modern UI; legacy XML views also in the codebase. Uses Room "
+                "for local storage and offline access, with cloud sync for backup and cross-device use."
+            ),
+            "tech_stack": ["Kotlin", "Jetpack Compose", "Material 3", "Room", "Android", "XML"],
+            "category": "mobile",
+            "github_url": "https://github.com/Nanu25/Culina",
+            "live_url": None,
+            "featured": False,
+        },
+    ],
+    2025: [
+        {
+            "title": "Event Ticket Platform",
+            "description": (
+                "RESTful API backend for an event ticketing system. Organizers create events and ticket types; "
+                "attendees purchase tickets and receive QR codes; staff validate tickets at entry. Built with "
+                "Spring Boot 3.5 / Java 21, PostgreSQL (Neon DB), JWT auth, Flyway migrations. Features multi-role "
+                "access (Organizer, Staff, Attendee), QR code generation (ZXing), PDF ticket downloads (iText), "
+                "analytics, and layered architecture. Frontend built with Next.js 15, TypeScript, Tailwind. "
+                "I worked mainly on the backend."
+            ),
+            "tech_stack": ["Spring Boot", "Java 21", "PostgreSQL", "JWT", "Flyway", "MapStruct", "Next.js", "TypeScript"],
+            "category": "fullstack",
+            "github_url": "https://github.com/alextm0/event-ticket-platform-backend",
+            "live_url": None,
+            "featured": False,
+        },
+        {
+            "title": "Gym Journal",
+            "description": (
+                "A full-stack fitness tracking platform built from scratch. Users can log workouts, "
+                "track personal records, visualize progress over time, and get AI-powered training suggestions. "
+                "Features a comprehensive exercise library with 500+ exercises and detailed metrics dashboard."
+            ),
+            "tech_stack": ["React", "Node.js", "PostgreSQL", "Express", "OpenAI API"],
+            "category": "fullstack",
+            "github_url": "https://github.com/Nanu25/GymJournal/tree/Heroku",
+            "live_url": "https://gymjournal-75451ef51cbf.herokuapp.com/",
+            "featured": True,
+        },
+        {
+            "title": "Toy Language Interpreter",
+            "description": (
+                "A complete programming language interpreter with lexer, parser, and execution engine. "
+                "Supports variables, conditionals, loops, functions, and concurrent execution with "
+                "thread synchronization. Includes a type system and garbage collection."
+            ),
+            "tech_stack": ["Java", "OOP", "Design Patterns", "Multithreading"],
+            "category": "systems",
+            "github_url": "https://github.com/Nanu25/ToyLanguage",
+            "live_url": None,
+            "featured": False,
+        },
 
-def contact(request):
-    return render(request, "cvsite/contact.html")
+    ],
+    2024: [
+
+        {
+            "title": "Habit Tracker",
+            "description": (
+                "A habit tracking application that helps users build and maintain healthy routines. "
+                "Features include habit creation, progress tracking with visual statistics, streak counting, "
+                "and a clean, intuitive dashboard. Built as my CS50 final project."
+            ),
+            "tech_stack": ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
+            "category": "web",
+            "github_url": "https://github.com/Nanu25/Habits",
+            "live_url": "https://my-habit-tracker-0591dbd6deef.herokuapp.com/",
+            "featured": False,
+        },
+        {
+            "title": "Our Social Network",
+            "description": (
+                "A Twitter-like social network built with Django. Users can create posts, follow and unfollow others, "
+                "like posts, edit their own content, and view personalized feeds. Features pagination, user profiles, "
+                "and a clean, responsive interface. My first deployed web application—hosted on Heroku—and an early "
+                "step into full-stack web development."
+            ),
+            "tech_stack": ["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"],
+            "category": "web",
+            "github_url": "https://github.com/Nanu25/Our-Social-Network",
+            "live_url": None,
+            "featured": False,
+        },
+        {
+            "title": "Connect Four AI",
+            "description": (
+                "An intelligent Connect Four game with an unbeatable AI opponent. Implements Minimax "
+                "algorithm with Alpha-Beta pruning for optimal move selection. Features adjustable "
+                "difficulty levels and a polished graphical interface."
+            ),
+            "tech_stack": ["Python", "Pygame", "Minimax", "Alpha-Beta Pruning"],
+            "category": "ai",
+            "github_url": "https://github.com/Nanu25/Connect-Four",
+            "live_url": None,
+            "featured": False,
+        },
+    ],
+}
+
+# Portfolio stats for hero section
+PORTFOLIO_STATS = {
+    "total_projects": sum(len(projects) for projects in PROJECTS_BY_YEAR.values()),
+    "years_coding": 4,
+    "technologies": 20,
+}
+
+
+def portfolio(request):
+    # Years descending (newest first) for template
+    years = sorted(PROJECTS_BY_YEAR.keys(), reverse=True)
+    portfolio_years = [(y, PROJECTS_BY_YEAR[y]) for y in years]
+    return render(
+        request,
+        "cvsite/portfolio.html",
+        {
+            "portfolio_years": portfolio_years,
+            "stats": PORTFOLIO_STATS,
+        },
+    )
 
 # Hardcoded journal entries
 JOURNAL_ENTRIES = {
@@ -49,7 +206,7 @@ JOURNAL_ENTRIES = {
         "title": "Balancing Sports and Academics",
         "content": (
             "Since I was in primary school, I’ve been passionate about sports. I started playing handball in the first grade, encouraged by my parents. They don’t play sports themselves, but they wanted me to stay active and pursue something I could enjoy. That’s how my journey with handball began, and it quickly became a big part of my life.\n\n"
-            "In school, I’ve worked hard to balance academics with sports. I was a strong student and, at the same time, a dedicated handball player. I took pride in excelling at both, even when it wasn’t easy. When I reached high school, I discovered a new interest: computer science. I started learning to code and tackling algorithmic problems, which opened up a whole new world for me. But I never let go of sports. Handball remained a constant, and I found a rhythm that allowed me to grow in both areas. My studies and my athletic pursuits have shaped me in different ways, teaching me discipline, focus, and how to manage my time. Looking back, I’m proud of how I’ve kept these two passions alive, and I hope to continue balancing them as I move forward."
+            "In school, I’ve worked hard to balance academics with sports. I was a good student and, at the same time, a dedicated handball player. I took pride in excelling at both, even when it wasn’t easy. When I reached high school, I discovered a new interest: computer science. I started learning to code and 'tackling' algorithmic problems, which opened up a whole new world for me. But I never let go of sports. Handball remained a constant, and I found a rhythm that allowed me to grow in both areas. My studies and my athletic pursuits have shaped me in different ways, teaching me discipline, focus, and how to manage my time. Looking back, I’m proud of how I’ve kept these two passions alive, and I hope to continue balancing them as I move forward."
         ),
         "date": "February 10, 2025"
     },

@@ -1,31 +1,160 @@
 {% extends "cvsite/layout.html" %}
+{% load static %}
 {% block content %}
-    <div class="intro-text">
-        I am a second-year <strong>Computer Science</strong> student at <strong>Babeș-Bolyai University</strong> with a passion for <strong>competitive programming</strong>, sports, reading, and personal development. Throughout high school, I excelled in <strong>algorithmic competitions</strong>, math contests, and sports events, earning multiple awards. I also enjoy mentoring students in the fundamentals of competitive programming, sharing my knowledge and experience. I’m eager to bring my problem-solving skills, dedication, and enthusiasm for technology to new challenges and opportunities in the tech industry.
-    </div>
-    
-    
-    <div class="button-container">
-        <a href="{% url 'about' %}" class="btn btn-primary">About Me</a>
-        <a href="{% url 'portfolio' %}" class="btn btn-primary">View My Portfolio</a>
-{#        <a href="{% url 'contact' %}" class="btn btn-primary">Contact Me</a>#}
-    </div>
+<div class="index-page">
+    <div class="index-container">
+        <!-- Hero -->
+        <section class="index-hero">
+            <div class="index-name-photo">
+                <img src="{% static 'images/peu.jpeg' %}" alt="Grancea Alexandru" class="index-photo">
+                <h1 class="index-name">Grancea Alexandru</h1>
+            </div>
+            <p class="index-intro">
+                I am a third-year <strong>Computer Science</strong> student at <strong>Babeș-Bolyai University</strong> with a strong passion for <strong>software development, AI,</strong> and <strong>competitive programming</strong>.
+                My foundation in tech is built on years of excelling in algorithmic and math competitions, and I currently channel that experience into mentoring younger students.
+                Outside of coding, I bring the same discipline and energy to sports and personal development, and I am always eager to tackle new problem-solving challenges.
+            </p>
+            <div class="index-ctas">
+                <a href="{% url 'about' %}" class="btn-index btn-primary-index">
+                    <i class="fas fa-user"></i>
+                    <span>About Me</span>
+                </a>
+                <a href="{% url 'portfolio' %}" class="btn-index btn-accent-index">
+                    <i class="fas fa-folder-open"></i>
+                    <span>View Portfolio</span>
+                </a>
+                <a href="{% static 'cv/cv.pdf' %}" class="btn-index btn-cv-index" target="_blank" rel="noopener noreferrer">
+                    <i class="fas fa-file-pdf"></i>
+                    <span>View CV</span>
+                </a>
+                <button type="button" class="btn-index btn-ghost-index btn-me-trigger" id="meBtn" aria-label="About me popup">
+                    <i class="fas fa-terminal"></i>
+                    <span>Me</span>
+                </button>
+            </div>
+        </section>
 
-    
-    <!-- Personal Journal Section -->
-    <div id="journal-section">
-        <h3>Personal Journal</h3>
-        <ul>
-            <li><a href="{% url 'journal_entry' entry_id=1 %}">My Journey into Competitive Programming</a></li>
-{#            <li><a href="{% url 'journal_entry' entry_id=2 %}">Lessons Learned from Algorithmic Contests</a></li>#}
-            <li><a href="{% url 'journal_entry' entry_id=3 %}">Balancing Sports and Academics</a></li>
-{#            <li><a href="{% url 'journal_entry' entry_id=4 %}">Why I Love Teaching Competitive Programming</a></li>#}
-            <li><a href="{% url 'journal_entry' entry_id=5 %}">Prepare for “Day One”</a></li>
-        </ul>
+        <!-- Journal -->
+        <section class="index-journal">
+            <div class="journal-card">
+                <h3 class="journal-title">
+                    <i class="fas fa-book-open"></i>
+                    <span>Personal Journal</span>
+                </h3>
+                <p class="journal-desc">Stories from my journey in tech, sports, and growth.</p>
+                <ul class="journal-list">
+                    {% for entry in featured_entries %}
+                    <li>
+                        <a href="{% url 'journal_entry' entry.id %}" class="journal-link">
+                            <span class="journal-link-icon">
+                                <i class="fas fa-{{ entry.icon }}"></i>
+                            </span>
+                            <span class="journal-link-title">{{ entry.title }}</span>
+                            <i class="fas fa-chevron-right journal-link-arrow"></i>
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
     </div>
 </div>
 
+<!-- Retro "Me" popup -->
+<div class="me-modal-overlay" id="meModal" aria-hidden="true">
+    <div class="me-modal" role="dialog" aria-labelledby="meModalTitle">
+        <div class="me-terminal">
+            <div class="me-terminal-header">
+                <span class="me-terminal-dots"></span>
+                <span class="me-terminal-title">USER.TXT - GRANCEA ALEXANDRU</span>
+            </div>
+            <div class="me-terminal-body">
+                <pre class="me-output" id="meOutput"><span class="me-prompt">&gt;</span> </pre>
+                <span class="me-cursor" aria-hidden="true">|</span>
+            </div>
+        </div>
+        <button type="button" class="me-modal-close" id="meModalClose" aria-label="Close">&times;</button>
+    </div>
+</div>
 
+<script>
+(function() {
+    const modal = document.getElementById('meModal');
+    const btn = document.getElementById('meBtn');
+    const closeBtn = document.getElementById('meModalClose');
+    const output = document.getElementById('meOutput');
 
-    
+    const lines = [
+        '> whoami',
+        'GRANCEA ALEXANDRU',
+        '',
+        '> status',
+        '3rd year CS @ Babes-Bolyai University',
+        'Cluj-Napoca, Romania',
+        'Former: Intern at Amazon',
+        'Current: Intern at Garmin (Swift dev intern)',
+        '',
+        '> skills',
+        'Algorithms | Competitive Programming | Python | Java | Kotlin',
+        'React | Node.js | Django | Spring Boot | SQL | Room',
+        'Android | Jetpack Compose | Material 3 | XML',
+        'AWS | Lambda | DynamoDB | SQS',
+        '',
+        '> achievements',
+        '- Bronze @ National CS Olympiad',
+        '- CS50 Harvard | Teaching Informatics',
+        '',
+        '> connect',
+        'github.com/Nanu25',
+        'linkedin.com/in/alexandru-grancea-904a032b6',
+        '',
+        '> _'
+    ];
+
+    function typewriter(el, text, i, cb) {
+        if (i < text.length) {
+            el.textContent += text[i];
+            setTimeout(function() { typewriter(el, text, i + 1, cb); }, 25);
+        } else {
+            el.innerHTML += '\n';
+            if (cb) cb();
+        }
+    }
+
+    function runSequence(idx) {
+        if (idx >= lines.length) {
+            document.querySelector('.me-cursor').style.animation = 'me-blink 1s step-end infinite';
+            return;
+        }
+        var line = lines[idx];
+        if (line === '') {
+            output.innerHTML += '\n';
+            setTimeout(function() { runSequence(idx + 1); }, 100);
+            return;
+        }
+        output.innerHTML += (line.startsWith('>') ? '<span class="me-prompt">' + line + '</span>\n' : line + '\n');
+        setTimeout(function() { runSequence(idx + 1); }, line.length * 18 + 80);
+    }
+
+    function openModal() {
+        modal.setAttribute('aria-hidden', 'false');
+        modal.classList.add('me-modal-open');
+        document.body.style.overflow = 'hidden';
+        output.innerHTML = '<span class="me-prompt">&gt; </span>';
+        document.querySelector('.me-cursor').style.animation = 'none';
+        setTimeout(function() { runSequence(0); }, 300);
+    }
+
+    function closeModal() {
+        modal.setAttribute('aria-hidden', 'true');
+        modal.classList.remove('me-modal-open');
+        document.body.style.overflow = '';
+    }
+
+    btn && btn.addEventListener('click', openModal);
+    closeBtn && closeBtn.addEventListener('click', closeModal);
+    modal && modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeModal(); });
+})();
+</script>
 {% endblock %}
