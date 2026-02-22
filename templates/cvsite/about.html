@@ -1,4 +1,5 @@
 {% extends "cvsite/layout.html" %}
+{% load static %}
 
 {% block content %}
 <div class="about-page">
@@ -13,20 +14,35 @@
         <section class="about-card">
             <h2 class="about-card-title">My story</h2>
             <p class="about-text">
-                I'm in my third year at <strong>Babeș-Bolyai University</strong> in Cluj-Napoca, pursuing my passion for computer science. From a young age I was curious about how technology works, and programming became the key to understanding and shaping that world.
+                From a young age, I was drawn to exact sciences like math, physics, and chemistry. At the same time, I developed a strong competitive spirit through sports—especially handball, but also football and table tennis. This balance of mental and physical discipline has defined my approach to learning.
             </p>
+            
             <p class="about-text">
-                My interest took off in high school with algorithms in C++. By 10th grade I had mastered the school curriculum and joined the <strong>Center for Performance in Informatics</strong>, where I dove into advanced algorithms and data structures. In my final year I had the chance to teach younger students advanced algorithmic techniques.
+                Coming from a small town with limited resources, I discovered programming on my own. When the pandemic hit during my 9th-grade year, I used the time at home to teach myself C++ and dive into algorithmic problems. What started as a way to pass the time quickly became a genuine passion.
             </p>
+            
             <p class="about-text">
-                I also completed Harvard's <strong>CS50</strong> course, which introduced me to new technologies and gave me the confidence to take on more complex projects.
+                By 10th grade, I had mastered the school curriculum and sought greater challenges at the <strong>Center for Performance in Informatics</strong>, focusing on advanced data structures. This journey came full circle in my final year of high school when I began mentoring younger students—a passion for teaching and sharing knowledge that stays with me today.
             </p>
+            
+            <p class="about-text">
+                To broaden my technical horizons, I completed Harvard's <strong>CS50</strong> course. It introduced me to new technologies and gave me the confidence to transition from solving isolated problems to building complex projects.
+            </p>
+            
+            <p class="about-text">
+                Currently, I am a third-year student at <strong>Babeș-Bolyai University</strong> in Cluj-Napoca. My focus has expanded to understanding low-level computing concepts and developing collaborative software. I am constantly gaining practical experience through internships and personal projects, working alongside colleagues to build impactful solutions.
+            </p>
+
             <p class="about-text about-text-last">
                 You can explore my work in the <a href="{% url 'portfolio' %}" class="about-link">projects section</a>.
             </p>
             <div class="about-connect-inline">
                 <span class="about-connect-label">Connect with me</span>
                 <div class="about-social">
+                    <a href="{% static 'cv/cv.pdf' %}" class="btn-about btn-about-cv" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>View CV</span>
+                    </a>
                     <a href="https://github.com/Nanu25" target="_blank" rel="noopener noreferrer" class="btn-about btn-about-ghost">
                         <i class="fab fa-github"></i>
                         <span>GitHub</span>

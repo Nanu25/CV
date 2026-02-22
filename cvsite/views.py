@@ -27,18 +27,54 @@ def about(request):
 
 # Hardcoded portfolio projects, grouped by year (newest first)
 PROJECTS_BY_YEAR = {
+    2026: [
+        {
+            "title": "Hough Transform - Parallel Implementation",
+            "description": (
+                "Parallel implementation of the Hough transform for line and circle detection in images. Offers "
+                "two implementations: multi-threaded (C++11 threads) for shared-memory systems and MPI-based "
+                "for distributed clusters. Both preprocessing (grayscale conversion, Canny edge detection) and "
+                "the Hough transform itself are parallelized. Achieves 5–7× speedup on 8 cores (threaded) and "
+                "3–4× speedup on 4 nodes (MPI). Built with C++17, OpenCV, and CMake. Generates edge maps, "
+                "annotated results, and performance metrics."
+            ),
+            "tech_stack": ["C++17", "OpenCV", "CMake", "MPI", "Multithreading", "OpenMP"],
+            "category": "systems",
+            "github_url": "https://github.com/Nanu25/HoughTransform",
+            "live_url": None,
+            "featured": False,
+        },
+        {
+            "title": "Recipe Organizer (Culina)",
+            "description": (
+                "Mobile app for cooking enthusiasts to manage and organize recipes. Add recipes with ingredients "
+                "and steps, track nutritional info (protein, carbs, fat) with automatic calorie calculation. "
+                "Search by name/ingredients/steps, filter by nutritional range, and mark favorites. Built with "
+                "Jetpack Compose (Material 3) for a modern UI; legacy XML views also in the codebase. Uses Room "
+                "for local storage and offline access, with cloud sync for backup and cross-device use."
+            ),
+            "tech_stack": ["Kotlin", "Jetpack Compose", "Material 3", "Room", "Android", "XML"],
+            "category": "mobile",
+            "github_url": "https://github.com/Nanu25/Culina",
+            "live_url": None,
+            "featured": False,
+        },
+    ],
     2025: [
         {
-            "title": "Habit Tracker",
+            "title": "Event Ticket Platform",
             "description": (
-                "A habit tracking application that helps users build and maintain healthy routines. "
-                "Features include habit creation, progress tracking with visual statistics, streak counting, "
-                "and a clean, intuitive dashboard. Built as my CS50 final project."
+                "RESTful API backend for an event ticketing system. Organizers create events and ticket types; "
+                "attendees purchase tickets and receive QR codes; staff validate tickets at entry. Built with "
+                "Spring Boot 3.5 / Java 21, PostgreSQL (Neon DB), JWT auth, Flyway migrations. Features multi-role "
+                "access (Organizer, Staff, Attendee), QR code generation (ZXing), PDF ticket downloads (iText), "
+                "analytics, and layered architecture. Frontend built with Next.js 15, TypeScript, Tailwind. "
+                "I worked mainly on the backend."
             ),
-            "tech_stack": ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
-            "category": "web",
-            "github_url": "https://github.com/Nanu25/Habits",
-            "live_url": "https://my-habit-tracker-0591dbd6deef.herokuapp.com/",
+            "tech_stack": ["Spring Boot", "Java 21", "PostgreSQL", "JWT", "Flyway", "MapStruct", "Next.js", "TypeScript"],
+            "category": "fullstack",
+            "github_url": "https://github.com/alextm0/event-ticket-platform-backend",
+            "live_url": None,
             "featured": False,
         },
         {
@@ -54,8 +90,6 @@ PROJECTS_BY_YEAR = {
             "live_url": "https://gymjournal-75451ef51cbf.herokuapp.com/",
             "featured": True,
         },
-    ],
-    2024: [
         {
             "title": "Toy Language Interpreter",
             "description": (
@@ -66,6 +100,37 @@ PROJECTS_BY_YEAR = {
             "tech_stack": ["Java", "OOP", "Design Patterns", "Multithreading"],
             "category": "systems",
             "github_url": "https://github.com/Nanu25/ToyLanguage",
+            "live_url": None,
+            "featured": False,
+        },
+
+    ],
+    2024: [
+
+        {
+            "title": "Habit Tracker",
+            "description": (
+                "A habit tracking application that helps users build and maintain healthy routines. "
+                "Features include habit creation, progress tracking with visual statistics, streak counting, "
+                "and a clean, intuitive dashboard. Built as my CS50 final project."
+            ),
+            "tech_stack": ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
+            "category": "web",
+            "github_url": "https://github.com/Nanu25/Habits",
+            "live_url": "https://my-habit-tracker-0591dbd6deef.herokuapp.com/",
+            "featured": False,
+        },
+        {
+            "title": "Our Social Network",
+            "description": (
+                "A Twitter-like social network built with Django. Users can create posts, follow and unfollow others, "
+                "like posts, edit their own content, and view personalized feeds. Features pagination, user profiles, "
+                "and a clean, responsive interface. My first deployed web application—hosted on Heroku—and an early "
+                "step into full-stack web development."
+            ),
+            "tech_stack": ["Django", "Python", "SQLite", "HTML", "CSS", "JavaScript"],
+            "category": "web",
+            "github_url": "https://github.com/Nanu25/Our-Social-Network",
             "live_url": None,
             "featured": False,
         },
@@ -89,7 +154,7 @@ PROJECTS_BY_YEAR = {
 PORTFOLIO_STATS = {
     "total_projects": sum(len(projects) for projects in PROJECTS_BY_YEAR.values()),
     "years_coding": 4,
-    "technologies": 12,
+    "technologies": 20,
 }
 
 
@@ -105,9 +170,6 @@ def portfolio(request):
             "stats": PORTFOLIO_STATS,
         },
     )
-
-def contact(request):
-    return render(request, "cvsite/contact.html")
 
 # Hardcoded journal entries
 JOURNAL_ENTRIES = {
