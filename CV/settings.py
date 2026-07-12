@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = [ 'agportfolio-a13e2a8e20e4.herokuapp.com',
                     'localhost',
+                    '127.0.0.1'
                   ]
 
 
