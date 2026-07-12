@@ -12,26 +12,28 @@ eggs/
 *.manifest
 *.spec
 
-# Virtual environment
+# Virtual environments
 .venv/
 venv/
 ENV/
 env/
+Active/
 
 # Django
 *.log
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
-/media
-/staticfiles
+/media/
+/staticfiles/
+staticfiles/
 
 # Environment variables
 .env
 .env.local
 .env.*.local
 
-# IDE
+# IDEs and Editors
 .idea/
 .vscode/
 *.swp
@@ -41,7 +43,7 @@ db.sqlite3-journal
 .DS_Store
 Thumbs.db
 
-# Coverage / testing
+# Test coverage
 htmlcov/
 .tox/
 .coverage
