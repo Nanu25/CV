@@ -25,10 +25,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-dev-only-fallb
 # DEBUG is False in production (when DJANGO_SECRET_KEY is set) and True locally
 DEBUG = 'DJANGO_SECRET_KEY' not in os.environ
 
-ALLOWED_HOSTS = [ 'agportfolio-a13e2a8e20e4.herokuapp.com',
-                    'localhost',
-                    '127.0.0.1'
-                  ]
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,.vercel.app,agportfolio-a13e2a8e20e4.herokuapp.com').split(',')
 
 
 # Application definition
