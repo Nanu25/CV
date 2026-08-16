@@ -87,7 +87,7 @@ PROJECTS_BY_YEAR = {
             "tech_stack": ["React", "Node.js", "PostgreSQL", "Express", "OpenAI API"],
             "category": "fullstack",
             "github_url": "https://github.com/Nanu25/GymJournal/tree/Heroku",
-            "live_url": "https://gymjournal-75451ef51cbf.herokuapp.com/",
+            "live_url": "https://gym-journal-eta.vercel.app/login",
             "featured": True,
         },
         {
@@ -117,7 +117,7 @@ PROJECTS_BY_YEAR = {
             "tech_stack": ["Django", "Python", "SQLite", "HTML/CSS", "JavaScript"],
             "category": "web",
             "github_url": "https://github.com/Nanu25/Habits",
-            "live_url": "https://my-habit-tracker-0591dbd6deef.herokuapp.com/",
+            "live_url": None,
             "featured": False,
         },
         {
