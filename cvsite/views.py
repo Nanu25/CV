@@ -80,11 +80,10 @@ PROJECTS_BY_YEAR = {
         {
             "title": "Gym Journal",
             "description": (
-                "A full-stack fitness tracking platform built from scratch. Users can log workouts, "
-                "track personal records, visualize progress over time, and get AI-powered training suggestions. "
-                "Features a comprehensive exercise library with 500+ exercises and detailed metrics dashboard."
+                "A full-stack workout intelligence platform with custom session analytics, interactive progress "
+                "charting, and an integrated Gemini API assistant delivering tailored training insights."
             ),
-            "tech_stack": ["React", "Node.js", "PostgreSQL", "Express", "OpenAI API"],
+            "tech_stack": ["React", "Node.js", "Express", "PostgreSQL", "Gemini API"],
             "category": "fullstack",
             "github_url": "https://github.com/Nanu25/GymJournal/tree/Heroku",
             "live_url": "https://gym-journal-eta.vercel.app/login",
